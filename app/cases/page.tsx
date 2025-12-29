@@ -36,7 +36,7 @@ export default async function CasesPage() {
                         </div>
                         <h1 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight tracking-tighter">
                             Кейсы внедрения <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">GRIDIX v1</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500"><p>GRIDIX</p></span>
                         </h1>
                         <p className="text-xl md:text-2xl text-slate-400 leading-relaxed font-medium max-w-2xl">
                             Узнайте, как лидирующие девелоперы в ОАЭ, Грузии и СНГ автоматизируют продажи и увеличивают доход с нашими решениями.
