@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Box, CreditCard, FileText, Globe, MessageSquare, PieChart, Shield, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { hoverScaleAnimation } from "@/lib/motion-utils";
 
 export const SectionMarketplace = () => {
     const modules = [
@@ -42,7 +43,7 @@ export const SectionMarketplace = () => {
                         <motion.div
                             key={i}
                             className="p-6 rounded-xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center text-center gap-4 hover:bg-white hover:border-slate-200 hover:shadow-lg transition-all cursor-pointer group"
-                            whileHover={{ scale: 1.02 }}
+                            {...hoverScaleAnimation}
                         >
                             <div className="p-3 bg-white rounded-xl shadow-sm group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
                                 <m.icon className="w-6 h-6 text-slate-600 group-hover:text-blue-600" />
