@@ -6,11 +6,20 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { BuilderCaseStudy } from "@/lib/types/case-study";
 import { BuilderContent } from "@builder.io/sdk";
+import { Metadata } from "next";
 
 export const revalidate = 3600; // 1 hour instead of 60 seconds
 
 interface CaseStudyPageProps {
     params: Promise<{ slug: string }>;
+}
+
+async function getCaseStudy(slug: string) {
+    return (await builder.get("case-study", {
+        query: {
+            "data.slug": slug,
+        },
+    }).promise()) as unknown as BuilderCaseStudy;
 }
 
 export async function generateStaticParams() {
@@ -24,6 +33,31 @@ export async function generateStaticParams() {
     }));
 }
 
+export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const content = await getCaseStudy(slug);
+
+    if (!content) return {};
+
+    const { data } = content;
+    const title = data.seoTitle || `${data.title} | Кейсы GRIDIX`;
+    const description = data.seoDescription || data.summary;
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            type: 'article',
+            images: data.image ? [{ url: data.image }] : [],
+        },
+        alternates: {
+            canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/cases/${slug}`,
+        }
+    };
+}
+
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     const { slug } = await params;
 
@@ -35,11 +69,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         );
     }
 
-    const content = (await builder.get("case-study", {
-        query: {
-            "data.slug": slug,
-        },
-    }).promise()) as unknown as BuilderCaseStudy;
+    const content = await getCaseStudy(slug);
 
     if (!content) {
         notFound();
@@ -47,8 +77,41 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
     const { data } = content;
 
+    // JSON-LD Schema.org
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": data.title,
+        "description": data.seoDescription || data.summary,
+        "author": { "@type": "Organization", "name": "GRIDIX" },
+        "image": data.image,
+        "datePublished": data.date,
+        "about": [
+            { "@type": "SoftwareApplication", "name": "GRIDIX v1" },
+            { "@type": "Thing", "name": "Продажи недвижимости" }
+        ]
+    };
+
+    // If using Builder Layout, render full page without the legacy wrapper
+    if (data.useBuilderLayout) {
+        return (
+            <main className="min-h-screen bg-white">
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
+                <RenderBuilderContent content={content as unknown as BuilderContent} model="case-study" />
+            </main>
+        );
+    }
+
+    // Legacy / Hybrid Layout
     return (
         <main className="min-h-screen bg-slate-950 pt-32 pb-24">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="container px-4 md:px-6 mx-auto">
                 <Link href="/cases" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-12 group">
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
