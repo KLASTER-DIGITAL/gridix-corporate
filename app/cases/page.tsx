@@ -1,4 +1,5 @@
 import { builder } from "@/lib/builder";
+import { getCachedData, setCachedData } from "@/lib/cache";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
@@ -16,17 +17,29 @@ export default async function CasesPage() {
     }
 
     let cases: BuilderCaseStudy[] = [];
-    try {
-        cases = (await builder.getAll("case-study", {
-            options: { noTargeting: true },
-            sort: {
-                createdDate: -1,
-            },
-        })) as unknown as BuilderCaseStudy[];
-    } catch (error) {
-        console.error('Failed to fetch cases from Builder:', error);
-        // Return empty array on error - page will still load
-        cases = [];
+    const cacheKey = 'cases-list-all';
+
+    // Try to get from cache first
+    const cached = getCachedData<BuilderCaseStudy[]>(cacheKey);
+    if (cached) {
+        cases = cached;
+    } else {
+        try {
+            cases = (await builder.getAll("case-study", {
+                options: { noTargeting: true },
+                sort: {
+                    createdDate: -1,
+                },
+            })) as unknown as BuilderCaseStudy[];
+
+            if (cases.length > 0) {
+                setCachedData(cacheKey, cases);
+            }
+        } catch (error) {
+            console.error('Failed to fetch cases from Builder:', error);
+            // Return empty array on error - page will still load
+            cases = [];
+        }
     }
 
     return (
