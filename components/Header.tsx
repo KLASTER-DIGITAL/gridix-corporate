@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import { MegaMenu } from './layout/MegaMenu';
 import { Button } from './ui/button';
-import { cn } from '@/lib/utils';
-import { Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { Menu, Globe } from 'lucide-react';
 import {
     Sheet,
     SheetContent,
@@ -19,7 +18,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from 'react';
+import { } from 'react';
 
 export const Header = () => {
     return (
@@ -43,7 +42,7 @@ export const Header = () => {
                     {/* Login - Desktop Only */}
                     <div className="hidden md:flex items-center gap-4">
                         <Link href="/partners" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                            Partner Program
+                            Партнерская программа
                         </Link>
 
                         {/* Language Switcher */}
@@ -72,13 +71,13 @@ export const Header = () => {
                         <div className="w-px h-6 bg-white/10" />
 
                         <Button variant="ghost" className="text-slate-300 hover:text-white hover:bg-white/5">
-                            Login
+                            Вход
                         </Button>
                     </div>
 
                     <Button className="h-9 px-4 text-sm bg-white text-slate-900 hover:bg-slate-200 font-medium transition-colors hidden sm:flex" asChild>
                         <Link href="/demo">
-                            Get Demo
+                            Заказать демо
                         </Link>
                     </Button>
 
@@ -98,21 +97,21 @@ export const Header = () => {
                             </SheetHeader>
                             <div className="flex flex-col p-6 gap-6">
                                 <div className="flex flex-col gap-4">
-                                    <MobileLink href="/smart-catalog">Smart Catalog</MobileLink>
-                                    <MobileLink href="/developer-workspace">Developer Workspace</MobileLink>
-                                    <MobileLink href="/crm-sync">CRM & Leads</MobileLink>
-                                    <MobileLink href="/integrations">Integrations</MobileLink>
-                                    <MobileLink href="/cases">Cases</MobileLink>
-                                    <MobileLink href="/pricing">Pricing</MobileLink>
-                                    <MobileLink href="/partners">Partner Program</MobileLink>
+                                    <MobileLink href="/smart-catalog">Смарт-каталог</MobileLink>
+                                    <MobileLink href="/developer-workspace">Кабинет застройщика</MobileLink>
+                                    <MobileLink href="/crm-sync">CRM и Лиды</MobileLink>
+                                    <MobileLink href="/integrations">Интеграции</MobileLink>
+                                    <MobileLink href="/cases">Кейсы</MobileLink>
+                                    <MobileLink href="/pricing">Тарифы</MobileLink>
+                                    <MobileLink href="/partners">Партнерская программа</MobileLink>
                                 </div>
                                 <div className="h-px bg-white/10 w-full" />
                                 <div className="flex flex-col gap-4">
                                     <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white" asChild>
-                                        <Link href="/demo">Get Demo</Link>
+                                        <Link href="/demo">Заказать демо</Link>
                                     </Button>
                                     <Button variant="outline" className="w-full border-white/10 text-white hover:bg-white/5 bg-transparent" asChild>
-                                        <Link href="/login">Login</Link>
+                                        <Link href="/login">Вход</Link>
                                     </Button>
                                 </div>
                             </div>
