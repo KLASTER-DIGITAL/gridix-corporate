@@ -1,4 +1,3 @@
-
 export interface CaseStudyStat {
     label: string;
     value: string;
@@ -14,6 +13,9 @@ export interface CaseStudyData {
     stats?: CaseStudyStat[];
     blocks?: unknown[];
     date?: number | string;
+    useBuilderLayout?: boolean;
+    seoTitle?: string;
+    seoDescription?: string;
 }
 
 export interface BuilderCaseStudy {
