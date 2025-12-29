@@ -12,25 +12,35 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-    const pages = await builder.getAll('page', {
-        options: { noTargeting: true },
-        fields: 'data.url',
-        limit: 100,
-    });
+    // If no API key is set, return empty params to avoid build error
+    if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
+        return [];
+    }
 
-    return pages
-        .map((page) => {
-            const url = page.data?.url;
-            // Homepage is usually '/' or empty string
-            if (!url || url === '/') return { slug: [] };
+    try {
+        const pages = await builder.getAll('page', {
+            options: { noTargeting: true },
+            fields: 'data.url',
+            limit: 100,
+        });
 
-            // Ensure strict slug array for catch-all
-            return {
-                slug: url.split('/').filter((x: string) => x && x !== ''),
-            };
-        })
-        // Unique urls
-        .filter((v, i, a) => a.findIndex(t => t.slug.join('/') === v.slug.join('/')) === i);
+        return pages
+            .map((page) => {
+                const url = page.data?.url;
+                // Homepage is usually '/' or empty string
+                if (!url || url === '/') return { slug: [] };
+
+                // Ensure strict slug array for catch-all
+                return {
+                    slug: url.split('/').filter((x: string) => x && x !== ''),
+                };
+            })
+            // Unique urls
+            .filter((v, i, a) => a.findIndex(t => t.slug.join('/') === v.slug.join('/')) === i);
+    } catch (error) {
+        console.warn('Failed to fetch builder pages for static params:', error);
+        return [];
+    }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
