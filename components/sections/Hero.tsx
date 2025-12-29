@@ -6,6 +6,7 @@ import { Code2, Building2, Users, Check } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CtaButton } from "../CtaButton";
+import { fadeInUpAnimation, fadeInAnimation, scaleInAnimation, viewportSettings } from "@/lib/motion-utils";
 
 export const Hero = () => {
     return (
@@ -19,9 +20,7 @@ export const Hero = () => {
 
                     {/* Animated Badge */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        {...fadeInUpAnimation}
                     >
                         <Badge variant="outline" className="px-4 py-1.5 rounded-full border-blue-500/30 bg-blue-500/5 text-blue-300 backdrop-blur-sm hover:bg-blue-500/10 transition-colors cursor-default">
                             <span className="relative flex h-2 w-2 mr-2">
@@ -35,9 +34,8 @@ export const Hero = () => {
                     {/* Headline */}
                     <motion.h1
                         className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
+                        {...fadeInUpAnimation}
+                        transition={{ ...fadeInUpAnimation.transition, delay: 0.1 }}
                     >
                         Цифровая экосистема <br className="hidden md:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 animate-gradient-x">для девелопера</span>
@@ -45,9 +43,8 @@ export const Hero = () => {
 
                     <motion.p
                         className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
+                        {...fadeInUpAnimation}
+                        transition={{ ...fadeInUpAnimation.transition, delay: 0.2 }}
                     >
                         Увеличьте выручку в среднем на <span className="text-white font-semibold">4.5%</span> и ускорьте цикл сделки до <span className="text-white font-semibold">2х раз</span>. <br className="hidden md:block" />
                         Единая платформа для управления ассортиментом, ценами и продажами.
@@ -56,9 +53,8 @@ export const Hero = () => {
                     {/* Buttons */}
                     <motion.div
                         className="flex flex-col sm:flex-row gap-4 pt-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
+                        {...fadeInUpAnimation}
+                        transition={{ ...fadeInUpAnimation.transition, delay: 0.3 }}
                     >
                         <CtaButton
                             label="Записаться на демо"
@@ -73,9 +69,8 @@ export const Hero = () => {
                     {/* Trust Strip */}
                     <motion.div
                         className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-medium text-slate-400 pt-8"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5, duration: 0.5 }}
+                        {...fadeInAnimation}
+                        transition={{ ...fadeInAnimation.transition, delay: 0.5 }}
                     >
                         <div className="flex items-center gap-2">
                             <Check className="w-4 h-4 text-blue-500" />
@@ -94,9 +89,8 @@ export const Hero = () => {
                     {/* Role Tabs - Simplified for visual balance */}
                     <motion.div
                         className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-12 w-full max-w-3xl"
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.4 }}
+                        {...fadeInUpAnimation}
+                        transition={{ ...fadeInUpAnimation.transition, delay: 0.4 }}
                     >
                         <GlassCard icon={<Building2 className="w-5 h-5 text-blue-400" />} title="Застройщик" desc="Управление продажами" />
                         <GlassCard icon={<Users className="w-5 h-5 text-indigo-400" />} title="Агентство" desc="Единое окно подбора" comingSoon />
@@ -108,9 +102,8 @@ export const Hero = () => {
                 {/* Abstract Dashboard Vis (Placeholder for now, but styled) */}
                 <motion.div
                     className="mt-24 relative mx-auto max-w-6xl aspect-[16/9] rounded-xl border border-white/10 bg-slate-900/50 backdrop-blur shadow-2xl overflow-hidden group"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.5 }}
+                    {...scaleInAnimation}
+                    transition={{ ...scaleInAnimation.transition, delay: 0.5 }}
                 >
                     {/* Fake UI Header */}
                     <div className="h-12 border-b border-white/5 bg-slate-900/80 flex items-center px-4 gap-2">
