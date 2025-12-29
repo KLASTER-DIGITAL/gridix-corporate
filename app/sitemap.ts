@@ -1,7 +1,9 @@
 import { MetadataRoute } from 'next';
-import { builder } from '@/lib/builder';
+import { builder, builderApiKey } from '@/lib/builder';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+    if (!builderApiKey) return [];
+
     const pages = await builder.getAll('page', {
         options: { noTargeting: true },
         fields: 'data.url,data.noindex,lastUpdated',

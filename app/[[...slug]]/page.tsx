@@ -1,4 +1,4 @@
-import { builder } from '@/lib/builder';
+import { builder, builderApiKey } from '@/lib/builder';
 import { notFound } from 'next/navigation';
 import { RenderBuilderContent } from '@/components/builder-renderer';
 import type { Metadata } from 'next';

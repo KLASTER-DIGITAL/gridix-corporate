@@ -1,8 +1,13 @@
 import { builder } from '@builder.io/sdk';
 
 // Initialize Builder with the API key from environment variables
-// Using empty string fallback to prevent crash during build if key is missing,
-// but it should be provided in .env.local
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY || '');
+// Note: passing an empty string to `builder.init()` results in a null apiKey internally,
+// which then throws during fetch. So we only init if we have a real key.
+const builderApiKey =
+  process.env.NEXT_PUBLIC_BUILDER_API_KEY ?? process.env.BUILDER_API_KEY ?? '';
 
-export { builder };
+if (builderApiKey) {
+  builder.init(builderApiKey);
+}
+
+export { builder, builderApiKey };
