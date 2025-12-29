@@ -18,7 +18,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { } from 'react';
+import type { ReactNode } from 'react';
 
 export const Header = () => {
     return (
