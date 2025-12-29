@@ -28,7 +28,13 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: {
       index: true,
       follow: true,
-    }
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: data.siteName || 'Gridix Platform',
+      description: data.defaultDescription || 'Профессиональная платформа для девелоперов и агентств.',
+      images: data.defaultOgImage ? [data.defaultOgImage] : [],
+    },
   };
 }
 
