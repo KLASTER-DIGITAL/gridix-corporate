@@ -1,4 +1,4 @@
-import { builder } from "@/lib/builder";
+import { builder, builderApiKey } from "@/lib/builder";
 import { notFound } from "next/navigation";
 import { RenderBuilderContent } from "@/components/builder-renderer";
 import { ArrowLeft, Calendar, Share2 } from "lucide-react";
@@ -14,6 +14,8 @@ interface CaseStudyPageProps {
 }
 
 export async function generateStaticParams() {
+    if (!builderApiKey) return [];
+
     const cases = (await builder.getAll("case-study", {
         options: { noTargeting: true },
         fields: "data.slug",
@@ -27,7 +29,7 @@ export async function generateStaticParams() {
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
     const { slug } = await params;
 
-    if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
+    if (!builderApiKey) {
         return (
             <main className="min-h-screen bg-slate-950 pt-32 pb-24 flex items-center justify-center">
                 <p className="text-slate-400">Builder.io API key is missing. Please check your configuration.</p>
