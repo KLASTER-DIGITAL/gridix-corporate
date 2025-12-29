@@ -1,0 +1,76 @@
+
+> gridix-next@0.1.0 lint
+> eslint
+
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/builder-registry.ts
+  2:19  warning  'Builder' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/layout/MegaMenu.tsx
+  14:10  warning  'Badge' is defined but never used     @typescript-eslint/no-unused-vars
+  16:10  warning  'BarChart' is defined but never used  @typescript-eslint/no-unused-vars
+  16:38  warning  'Laptop' is defined but never used    @typescript-eslint/no-unused-vars
+  16:58  warning  'Lock' is defined but never used      @typescript-eslint/no-unused-vars
+  16:64  warning  'Settings' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/Hero.tsx
+    5:10  warning  'ArrowRight' is defined but never used    @typescript-eslint/no-unused-vars
+  149:63  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/SectionFinalCTA.tsx
+  5:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/SectionOutcomes.tsx
+  6:39  warning  'TabsContent' is defined but never used  @typescript-eslint/no-unused-vars
+  7:45  warning  'Users' is defined but never used        @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/SectionPricing.tsx
+   2:17  warning  'ShieldCheck' is defined but never used   @typescript-eslint/no-unused-vars
+  70:83  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/SectionProcessMap.tsx
+  1:10  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/SectionProducts.tsx
+   5:59  warning  'Sparkles' is defined but never used                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   5:80  warning  'Globe2' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  55:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/SectionProof.tsx
+    7:10   warning  'cn' is defined but never used                                   @typescript-eslint/no-unused-vars
+    8:10   warning  'motion' is defined but never used                               @typescript-eslint/no-unused-vars
+   94:37   error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+   94:159  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  117:102  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/SectionRoles.tsx
+  55:69  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/sections/SectionSecurity.tsx
+  46:85  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  46:89  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/templates/SolutionsAgencyPage.tsx
+  5:52  warning  'ShieldCheck' is defined but never used  @typescript-eslint/no-unused-vars
+  5:72  warning  'Zap' is defined but never used          @typescript-eslint/no-unused-vars
+  6:8   warning  'Link' is defined but never used         @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/templates/SolutionsBrokerPage.tsx
+  5:57  warning  'CheckCircle2' is defined but never used  @typescript-eslint/no-unused-vars
+  6:8   warning  'Link' is defined but never used          @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/templates/SolutionsClientPage.tsx
+  5:10  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+  5:35  warning  'Map' is defined but never used         @typescript-eslint/no-unused-vars
+  5:55  warning  'Search' is defined but never used      @typescript-eslint/no-unused-vars
+  6:8   warning  'Link' is defined but never used        @typescript-eslint/no-unused-vars
+  7:10  warning  'Button' is defined but never used      @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/components/templates/SolutionsDeveloperPage.tsx
+  5:60  warning  'Globe' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/rustamkarimov/DEV/GRIDIX LANDING/gridix-next/lib/types/case-study.ts
+  16:14  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 37 problems (9 errors, 28 warnings)
+
