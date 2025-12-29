@@ -91,7 +91,7 @@ export const SectionProof = () => {
                             <Quote className="h-10 w-10 text-blue-500/30 shrink-0" />
                             <div>
                                 <p className="text-xl md:text-2xl font-light text-slate-200 italic mb-6 leading-relaxed">
-                                    "Мы сократили время на актуализацию стоков для агентств с 3 дней до 5 минут. GRIDIX стал для нас единым источником правды."
+                                    &quot;Мы сократили время на актуализацию стоков для агентств с 3 дней до 5 минут. GRIDIX стал для нас единым источником правды.&quot;
                                 </p>
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center font-bold text-slate-400 ring-2 ring-slate-800">
@@ -114,7 +114,7 @@ export const SectionProof = () => {
     );
 };
 
-const ProofCard = ({ value, label, desc, icon }: { value: string, label: string, desc: string, icon: any }) => (
+const ProofCard = ({ value, label, desc, icon }: { value: string, label: string, desc: string, icon: React.ReactNode }) => (
     <Card className="border border-white/5 bg-white/5 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
         <CardContent className="p-8 space-y-4">
             <div className="flex justify-between items-start">

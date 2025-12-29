@@ -43,7 +43,7 @@ export const SectionSecurity = () => {
 
                 <div className="mt-16 p-8 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="max-w-2xl">
-                        <h3 className="text-lg font-bold text-slate-900 mb-2">Нужен "Box" (On-premise)?</h3>
+                        <h3 className="text-lg font-bold text-slate-900 mb-2">Нужен &quot;Box&quot; (On-premise)?</h3>
                         <p className="text-slate-600">
                             Для крупнейших экосистем мы предлагаем развертывание GRIDIX в вашем частном облаке (Private Cloud)
                             с полным контролем над инфраструктурой и исходным кодом.

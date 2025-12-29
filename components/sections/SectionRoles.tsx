@@ -52,7 +52,17 @@ export const SectionRoles = () => {
     );
 };
 
-const RoleCard = ({ title, desc, features, icon, href, cta, soon }: any) => (
+interface RoleCardProps {
+    title: string;
+    desc: string;
+    features: string[];
+    icon: React.ReactNode;
+    href: string;
+    cta: string;
+    soon?: boolean;
+}
+
+const RoleCard = ({ title, desc, features, icon, href, cta, soon }: RoleCardProps) => (
     <div className="group relative rounded-2xl border border-white/10 bg-slate-800/40 p-1 hover:bg-slate-800/60 transition-all duration-300">
         <div className="h-full rounded-xl bg-slate-900/80 p-6 md:p-8 flex flex-col backdrop-blur-sm">
             <div className="flex justify-between items-start mb-6">

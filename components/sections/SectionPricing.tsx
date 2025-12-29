@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Check, ShieldCheck, Globe } from "lucide-react";
+import { Check, Globe } from "lucide-react";
 import Link from "next/link";
 
 export const SectionPricing = () => {
@@ -67,7 +67,18 @@ export const SectionPricing = () => {
     );
 };
 
-const PricingCard = ({ name, price, period, desc, features, cta, href, popular }: any) => (
+interface PricingCardProps {
+    name: string;
+    price: string;
+    period: string;
+    desc: string;
+    features: string[];
+    cta: string;
+    href: string;
+    popular?: boolean;
+}
+
+const PricingCard = ({ name, price, period, desc, features, cta, href, popular }: PricingCardProps) => (
     <div className={`relative flex flex-col p-8 rounded-3xl bg-white border ${popular ? 'border-blue-600 shadow-xl ring-4 ring-blue-600/10' : 'border-slate-200 shadow-sm'} transition-all duration-300`}>
         {popular && (
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-medium">

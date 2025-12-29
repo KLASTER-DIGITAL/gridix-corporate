@@ -1,5 +1,5 @@
 "use client";
-import { builder, Builder } from "@builder.io/react";
+import { builder } from "@builder.io/react";
 import { CtaButton } from "./CtaButton";
 import { JsonLd } from "./JsonLd";
 import { Hero } from "./sections/Hero";

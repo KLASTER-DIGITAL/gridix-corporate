@@ -11,9 +11,8 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { BarChart, Building2, Globe, Laptop, LayoutGrid, Lock, Settings, Users, Zap } from "lucide-react"
+import { Building2, Globe, LayoutGrid, Users, Zap } from "lucide-react"
 
 export function MegaMenu() {
     return (
@@ -126,6 +125,14 @@ export function MegaMenu() {
                     <NavigationMenuLink asChild>
                         <Link href="/pricing" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-slate-300 hover:text-white hover:bg-white/10 focus:bg-white/10 active:bg-white/10 font-medium")}>
                             Тарифы
+                        </Link>
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                    <NavigationMenuLink asChild>
+                        <Link href="/cases" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-slate-300 hover:text-white hover:bg-white/10 focus:bg-white/10 active:bg-white/10 font-medium")}>
+                            Блог
                         </Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>

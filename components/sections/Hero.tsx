@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Code2, Building2, Users, Check } from "lucide-react";
+import { Code2, Building2, Users, Check } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CtaButton } from "../CtaButton";
@@ -146,7 +146,7 @@ export const Hero = () => {
 };
 
 // Helper Component for Role Cards
-const GlassCard = ({ icon, title, desc, comingSoon }: { icon: any, title: string, desc: string, comingSoon?: boolean }) => (
+const GlassCard = ({ icon, title, desc, comingSoon }: { icon: React.ReactNode, title: string, desc: string, comingSoon?: boolean }) => (
     <div className="flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-left group cursor-default relative overflow-hidden">
         <div className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
             {icon}
