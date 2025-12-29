@@ -16,7 +16,12 @@ import { SectionPricing } from "./sections/SectionPricing";
 import { SectionFinalCTA } from "./sections/SectionFinalCTA";
 import { HomePage } from "./templates/HomePage";
 
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+const apiKey = process.env.NEXT_PUBLIC_BUILDER_API_KEY;
+if (apiKey) {
+    builder.init(apiKey);
+} else {
+    console.warn('[Builder Registry] API key is missing');
+}
 
 export const customComponents = [
     {
