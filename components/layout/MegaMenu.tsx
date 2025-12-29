@@ -22,7 +22,7 @@ export function MegaMenu() {
 
                 {/* Платформа (The Tech) */}
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-transparent text-slate-300 hover:text-white hover:bg-white/10 data-[state=open]:bg-white/10 focus:bg-white/10 active:bg-white/10 font-medium">Платформа</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="bg-transparent text-slate-300 hover:text-white hover:bg-white/10 data-[state=open]:bg-white/10 focus:bg-white/10 active:bg-white/10 font-medium">Платформ</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <div className="flex flex-row w-[900px] bg-white rounded-xl shadow-2xl overflow-hidden">
                             {/* Main Columns */}
