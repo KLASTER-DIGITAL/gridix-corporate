@@ -6,7 +6,10 @@ import { Footer } from '@/components/Footer';
 import { builder } from '@/lib/builder';
 import { cn } from '@/lib/utils'; // Optional if needed for body
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'] });
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  display: 'swap',
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   // Try to fetch global settings

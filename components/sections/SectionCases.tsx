@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { builder } from "@/lib/builder";
 import Link from "next/link";
+import Image from "next/image";
 import { BuilderCaseStudy, CaseStudyData } from "@/lib/types/case-study";
 
 export const SectionCases = async () => {
@@ -56,6 +57,7 @@ export const SectionCases = async () => {
                             title={item.data.title}
                             stats={item.data.stats}
                             imageClass={item.data.imageGradient}
+                            image={item.data.image}
                             slug={item.data.slug}
                         />
                     ))}
@@ -69,13 +71,23 @@ interface CaseCardProps extends Partial<CaseStudyData> {
     imageClass?: string;
 }
 
-const CaseCard = ({ company, title, stats, imageClass, slug }: CaseCardProps) => (
+const CaseCard = ({ company, title, stats, imageClass, image, slug }: CaseCardProps & { image?: string }) => (
     <Link href={`/cases/${slug}`} className="block group">
         <Card className="border-0 bg-transparent overflow-hidden h-full">
-            <div className={`h-48 w-full rounded-2xl mb-6 relative ${imageClass} border border-white/10 group-hover:border-white/20 transition-colors`}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-white/10 select-none">{company}</span>
-                </div>
+            <div className={`h-48 w-full rounded-2xl mb-6 relative ${imageClass || 'bg-slate-800'} border border-white/10 group-hover:border-white/20 transition-colors overflow-hidden`}>
+                {image ? (
+                    <Image
+                        src={image}
+                        alt={title || company || "Case study"}
+                        fill
+                        className="object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-2xl font-bold text-white/10 select-none">{company}</span>
+                    </div>
+                )}
             </div>
             <CardContent className="p-0">
                 <div className="text-sm font-medium text-blue-400 mb-2">{company}</div>

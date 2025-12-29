@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, LayoutGrid, Database, Key, Settings, Sparkles, BarChart3, Globe2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export const SectionProducts = () => {
@@ -52,10 +53,12 @@ export const SectionProducts = () => {
 
                         {/* Visual Mockup for Catalog */}
                         <div className="absolute top-10 right-[-10%] w-[60%] h-full shadow-2xl rounded-tl-2xl overflow-hidden border border-slate-200 group-hover:scale-105 transition-transform duration-700">
-                            <img
+                            <Image
                                 src="https://cdn.builder.io/api/v1/image/assets%2F4a7eb3cb911244e88ce8d4620f4d3813%2Fd4388e63da5e492292f763bc72b5394a"
                                 alt="Smart Catalog Interface"
-                                className="object-cover w-full h-full object-left-top opacity-90"
+                                fill
+                                className="object-cover object-left-top opacity-90"
+                                sizes="(max-width: 768px) 100vw, 50vw"
                             />
                         </div>
                     </motion.div>
