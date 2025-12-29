@@ -4,7 +4,7 @@ import { RenderBuilderContent } from '@/components/builder-renderer';
 import type { Metadata } from 'next';
 
 // ISR Revalidation
-export const revalidate = 60;
+export const revalidate = 3600; // 1 hour for better performance
 
 interface PageProps {
     params: Promise<{ slug?: string[] }>;

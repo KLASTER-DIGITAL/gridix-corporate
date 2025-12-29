@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { BuilderCaseStudy } from "@/lib/types/case-study";
 import { BuilderContent } from "@builder.io/sdk";
 
-export const revalidate = 60;
+export const revalidate = 3600; // 1 hour instead of 60 seconds
 
 interface CaseStudyPageProps {
     params: Promise<{ slug: string }>;
