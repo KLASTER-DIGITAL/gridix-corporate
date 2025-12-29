@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, LayoutGrid, Database, Key, Settings, Sparkles, BarChart3, Globe2 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { fadeInUpAnimation, viewportSettings } from "@/lib/motion-utils";
 
 export const SectionProducts = () => {
     return (
@@ -28,9 +29,9 @@ export const SectionProducts = () => {
 
                     {/* Item 1: Smart Catalog (Large Hero - Col Span 2) */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        {...fadeInUpAnimation}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={viewportSettings}
                         className="md:col-span-2 relative group overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500"
                     >
                         <div className="relative z-10 p-10 flex flex-col h-full bg-gradient-to-br from-white via-white to-blue-50/50">
@@ -67,10 +68,10 @@ export const SectionProducts = () => {
 
                     {/* Item 2: Developer Workspace (Vertical - Col Span 1) */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        {...fadeInUpAnimation}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
+                        viewport={viewportSettings}
+                        transition={{ ...fadeInUpAnimation.transition, delay: 0.1 }}
                         className="md:col-span-1 relative group overflow-hidden rounded-3xl bg-slate-900 text-white border border-slate-800 shadow-lg hover:shadow-2xl transition-all duration-500"
                     >
                         <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-800" />
@@ -102,10 +103,10 @@ export const SectionProducts = () => {
 
                     {/* Item 3: Analytics (Landscape - Col Span 1) */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        {...fadeInUpAnimation}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
+                        viewport={viewportSettings}
+                        transition={{ ...fadeInUpAnimation.transition, delay: 0.2 }}
                         className="relative group overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500"
                     >
                         <div className="p-8 flex flex-col h-full">
@@ -131,10 +132,10 @@ export const SectionProducts = () => {
 
                     {/* Item 4: CRM Sync (Small - Col Span 1) */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        {...fadeInUpAnimation}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
+                        viewport={viewportSettings}
+                        transition={{ ...fadeInUpAnimation.transition, delay: 0.3 }}
                         className="relative group overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500"
                     >
                         <div className="p-8">
@@ -155,10 +156,10 @@ export const SectionProducts = () => {
 
                     {/* Item 5: Aftersales (Small - Col Span 1) */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        {...fadeInUpAnimation}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4 }}
+                        viewport={viewportSettings}
+                        transition={{ ...fadeInUpAnimation.transition, delay: 0.4 }}
                         className="relative group overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-500 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"
                     >
                         <div className="p-8">
