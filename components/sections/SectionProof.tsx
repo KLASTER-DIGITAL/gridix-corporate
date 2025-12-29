@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Quote, TrendingUp, Zap, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 export const SectionProof = () => {
     // Enterprise logos placeholder (using text for now, should be SVGs)
