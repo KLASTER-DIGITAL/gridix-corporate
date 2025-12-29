@@ -123,7 +123,7 @@ export const Header = () => {
     );
 };
 
-const MobileLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
+const MobileLink = ({ href, children }: { href: string, children: ReactNode }) => (
     <SheetClose asChild>
         <Link href={href} className="text-lg font-medium text-slate-300 hover:text-white transition-colors">
             {children}
