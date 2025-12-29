@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { builder } from "@/lib/builder";
+import { getCachedData, setCachedData } from "@/lib/cache";
 import Link from "next/link";
 import { BuilderCaseStudy, CaseStudyData } from "@/lib/types/case-study";
 
