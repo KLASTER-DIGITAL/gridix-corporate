@@ -7,6 +7,14 @@ import { BuilderCaseStudy } from "@/lib/types/case-study";
 export const revalidate = 60;
 
 export default async function CasesPage() {
+    if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
+        return (
+            <main className="min-h-screen bg-slate-950 pt-32 pb-24 flex items-center justify-center">
+                <p className="text-slate-400">Builder.io API key is missing. Please check your configuration.</p>
+            </main>
+        );
+    }
+
     const cases = (await builder.getAll("case-study", {
         options: { noTargeting: true },
         sort: {

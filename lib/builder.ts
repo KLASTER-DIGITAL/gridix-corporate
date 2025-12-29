@@ -1,8 +1,15 @@
 import { builder } from '@builder.io/sdk';
 
-// Initialize Builder with the API key from environment variables
-// Using empty string fallback to prevent crash during build if key is missing,
-// but it should be provided in .env.local
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY || '');
+const apiKey = process.env.NEXT_PUBLIC_BUILDER_API_KEY;
+
+if (apiKey) {
+    builder.init(apiKey);
+} else {
+    if (typeof window === 'undefined') {
+        console.warn('[Builder] Server-side: NEXT_PUBLIC_BUILDER_API_KEY is missing!');
+    } else {
+        console.warn('[Builder] Client-side: NEXT_PUBLIC_BUILDER_API_KEY is missing!');
+    }
+}
 
 export { builder };

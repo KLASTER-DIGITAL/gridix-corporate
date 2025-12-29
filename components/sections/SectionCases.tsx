@@ -7,6 +7,11 @@ import Link from "next/link";
 import { BuilderCaseStudy, CaseStudyData } from "@/lib/types/case-study";
 
 export const SectionCases = async () => {
+    // Check if API key is set before fetching
+    if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
+        return null;
+    }
+
     const cases = (await builder.getAll("case-study", {
         options: { noTargeting: true },
         limit: 3,
