@@ -14,18 +14,30 @@ export const SectionCases = async () => {
     }
 
     let cases: BuilderCaseStudy[] = [];
-    try {
-        cases = (await builder.getAll("case-study", {
-            options: { noTargeting: true },
-            limit: 3,
-            sort: {
-                createdDate: -1,
-            },
-        })) as unknown as BuilderCaseStudy[];
-    } catch (error) {
-        console.error('Failed to fetch cases:', error);
-        // Return empty section if API fails - page will still render
-        return null;
+    const cacheKey = 'cases-section-3';
+
+    // Try to get from cache first
+    const cached = getCachedData<BuilderCaseStudy[]>(cacheKey);
+    if (cached) {
+        cases = cached;
+    } else {
+        try {
+            cases = (await builder.getAll("case-study", {
+                options: { noTargeting: true },
+                limit: 3,
+                sort: {
+                    createdDate: -1,
+                },
+            })) as unknown as BuilderCaseStudy[];
+
+            if (cases.length > 0) {
+                setCachedData(cacheKey, cases);
+            }
+        } catch (error) {
+            console.error('Failed to fetch cases:', error);
+            // Return empty section if API fails - page will still render
+            return null;
+        }
     }
 
     return (
