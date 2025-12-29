@@ -15,6 +15,18 @@ import { SectionCases } from "./sections/SectionCases";
 import { SectionPricing } from "./sections/SectionPricing";
 import { SectionFinalCTA } from "./sections/SectionFinalCTA";
 import { HomePage } from "./templates/HomePage";
+import { CaseHero } from "./cases/CaseHero";
+import { KpiCardsRow } from "./cases/KpiCardsRow";
+import { ProjectFactsTable } from "./cases/ProjectFactsTable";
+import { ProblemSection } from "./cases/ProblemSection";
+import { TasksCards } from "./cases/TasksCards";
+import { SolutionFeatures } from "./cases/SolutionFeatures";
+import { ResultsGrid } from "./cases/ResultsGrid";
+import { TestimonialCard } from "./cases/TestimonialCard";
+import { ModulesTags } from "./cases/ModulesTags";
+import { FaqAccordion } from "./cases/FaqAccordion";
+import { CtaBanner } from "./cases/CtaBanner";
+import { RelatedCasesGrid } from "./cases/RelatedCasesGrid";
 
 const apiKey = process.env.NEXT_PUBLIC_BUILDER_API_KEY;
 if (apiKey) {
