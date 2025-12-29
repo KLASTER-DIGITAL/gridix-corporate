@@ -99,17 +99,17 @@ export const CaseHero = ({
                     </div>
 
                     {/* Right Column */}
-                    <motion.div 
+                    <motion.div
                         className="relative"
                         {...fadeInAnimation}
                         transition={{ delay: 0.4 }}
                     >
                         <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-slate-100 shadow-2xl relative bg-slate-50">
                             {image ? (
-                                <OptimizedImage 
-                                    src={image} 
-                                    alt={title} 
-                                    fill 
+                                <OptimizedImage
+                                    src={image}
+                                    alt={title}
+                                    fill
                                 />
                             ) : (
                                 <div className="absolute inset-0 flex items-center justify-center">
@@ -143,7 +143,7 @@ export const CaseHero = ({
                                 </Badge>
                             )}
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
