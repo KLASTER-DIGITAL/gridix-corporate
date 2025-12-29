@@ -13,7 +13,7 @@ interface PageProps {
 
 export async function generateStaticParams() {
     // If no API key is set, return empty params to avoid build error
-    if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
+    if (!builderApiKey) {
         return [];
     }
 
@@ -47,9 +47,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const resolvedParams = await params;
     const urlPath = '/' + (resolvedParams?.slug?.join('/') || '');
 
-    const content = await builder.get('page', {
-        userAttributes: { urlPath },
-    }).promise();
+    const content = builderApiKey
+        ? await builder.get('page', {
+            userAttributes: { urlPath },
+        }).promise()
+        : null;
 
     if (!content) {
         return {
@@ -89,9 +91,11 @@ export default async function Page({ params, searchParams }: PageProps) {
     const resolvedSearchParams = await searchParams;
     const urlPath = '/' + (resolvedParams?.slug?.join('/') || '');
 
-    const content = await builder.get('page', {
-        userAttributes: { urlPath },
-    }).promise();
+    const content = builderApiKey
+        ? await builder.get('page', {
+            userAttributes: { urlPath },
+        }).promise()
+        : null;
 
     // Check if we are in preview mode
     // Builder preview adds query params like 'builder.preview=...'
