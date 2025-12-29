@@ -3,14 +3,36 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { builder } from '@/lib/builder';
+import { builder, builderApiKey } from '@/lib/builder';
 import { cn } from '@/lib/utils'; // Optional if needed for body
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export async function generateMetadata(): Promise<Metadata> {
+  if (!builderApiKey) {
+    return {
+      metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+      title: {
+        default: 'Gridix Platform',
+        template: '%s | Gridix',
+      },
+      description: 'Профессиональная платформа для девелоперов и агентств.',
+      openGraph: {
+        type: 'website',
+        siteName: 'Gridix',
+        images: [],
+      },
+      robots: {
+        index: true,
+        follow: true,
+      },
+    };
+  }
+
   // Try to fetch global settings
-  const settings = await builder.get('siteSettings', { options: { noTargeting: true } }).promise();
+  const settings = await builder
+    .get('siteSettings', { options: { noTargeting: true } })
+    .promise();
   const data = settings?.data || {};
 
   return {
