@@ -7,6 +7,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ArrowRight, BarChart3, LayoutGrid, Users, Zap } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { fadeInAnimation } from "@/lib/motion-utils";
 
 export const SectionOutcomes = () => {
     const [activeTab, setActiveTab] = useState("sales");
@@ -70,10 +71,9 @@ export const SectionOutcomes = () => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeTab}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: 20 }}
-                                transition={{ duration: 0.3 }}
+                                {...fadeInAnimation}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
                                 className="flex-1 p-8 md:p-12 flex flex-col justify-center"
                             >
                                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-600 text-xs font-semibold mb-6 w-fit shadow-sm">
