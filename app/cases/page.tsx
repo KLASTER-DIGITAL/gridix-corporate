@@ -1,4 +1,4 @@
-import { builder } from "@/lib/builder";
+import { builder, builderApiKey } from "@/lib/builder";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Calendar } from "lucide-react";
 import Link from "next/link";
@@ -7,7 +7,7 @@ import { BuilderCaseStudy } from "@/lib/types/case-study";
 export const revalidate = 60;
 
 export default async function CasesPage() {
-    if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
+    if (!builderApiKey) {
         return (
             <main className="min-h-screen bg-slate-950 pt-32 pb-24 flex items-center justify-center">
                 <p className="text-slate-400">Builder.io API key is missing. Please check your configuration.</p>
