@@ -13,7 +13,7 @@ export const SectionCases = async () => {
         return null;
     }
 
-    const cases = (await builder.getAll("case-study", {
+    const cases = (await builder.getAll("cases-study", {
         options: { noTargeting: true },
         limit: 3,
         sort: {
