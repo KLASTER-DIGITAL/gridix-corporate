@@ -16,7 +16,7 @@ interface CaseStudyPageProps {
 }
 
 async function getCaseContent(slug: string) {
-    const content = (await builder.get("case-study", {
+    const content = (await builder.get("cases-study", {
         query: {
             "data.slug": slug,
         },
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 }
 
 export async function generateStaticParams() {
-    const cases = (await builder.getAll("case-study", {
+    const cases = (await builder.getAll("cases-study", {
         options: { noTargeting: true },
         fields: "data.slug",
     })) as unknown as BuilderCaseStudy[];
@@ -285,7 +285,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                             {content.data?.blocks && content.data.blocks.length > 0 && (
                                 <div className="pt-24 border-t border-white/5">
                                     <h3 className="text-2xl font-bold text-white mb-12">Detail View</h3>
-                                    <RenderBuilderContent content={content as unknown as BuilderContent} model="case-study" />
+                                    <RenderBuilderContent content={content as unknown as BuilderContent} model="cases-study" />
                                 </div>
                             )}
                         </div>
