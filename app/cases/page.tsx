@@ -24,6 +24,7 @@ export default async function CasesPage() {
         },
     })) as unknown as BuilderCaseStudy[];
 
+
     return (
         <main className="min-h-screen bg-slate-950 text-slate-200">
             {/* Hero Section */}
