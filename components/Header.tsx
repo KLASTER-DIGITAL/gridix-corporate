@@ -101,7 +101,8 @@ export const Header = () => {
                                     <MobileLink href="/developer-workspace">Кабинет застройщика</MobileLink>
                                     <MobileLink href="/crm-sync">CRM и Лиды</MobileLink>
                                     <MobileLink href="/integrations">Интеграции</MobileLink>
-                                    <MobileLink href="/cases">Блог</MobileLink>
+                                    <MobileLink href="/cases">Кейсы</MobileLink>
+                                    <MobileLink href="/blog">Блог</MobileLink>
                                     <MobileLink href="/pricing">Тарифы</MobileLink>
                                     <MobileLink href="/partners">Партнерская программа</MobileLink>
                                 </div>
