@@ -89,6 +89,60 @@
   h6 {
     @apply tracking-tight font-bold;
   }
+
+  /* Prose styles for rich text content */
+  .prose {
+    @apply text-slate-200;
+  }
+
+  .prose h2 {
+    @apply text-3xl font-black text-white mt-12 mb-6 leading-tight;
+  }
+
+  .prose h3 {
+    @apply text-2xl font-bold text-white mt-8 mb-4 leading-tight;
+  }
+
+  .prose p {
+    @apply text-lg text-slate-300 leading-relaxed mb-6;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-6 space-y-3;
+  }
+
+  .prose ul {
+    @apply list-disc list-inside;
+  }
+
+  .prose ol {
+    @apply list-decimal list-inside;
+  }
+
+  .prose li {
+    @apply text-slate-300 leading-relaxed;
+  }
+
+  .prose li::marker {
+    @apply text-indigo-400;
+  }
+
+  .prose strong {
+    @apply font-bold text-white;
+  }
+
+  .prose a {
+    @apply text-indigo-400 hover:text-indigo-300 underline transition-colors;
+  }
+
+  .prose code {
+    @apply bg-slate-800 text-indigo-300 px-2 py-1 rounded text-sm font-mono;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-indigo-500 pl-6 italic text-slate-400 my-6;
+  }
 }
 
 /* Custom Utilities for Glow and Glass */

@@ -22,6 +22,8 @@ export default async function BlogPage() {
         },
     })) as unknown as BuilderBlogPost[];
 
+    console.log("posts", posts);
+
     return (
         <main className="min-h-screen bg-slate-950 text-slate-200">
             {/* Hero */}

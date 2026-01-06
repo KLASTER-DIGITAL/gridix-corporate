@@ -9,6 +9,7 @@ export interface BlogPostData {
     seoDescription?: string;
     canonicalUrl?: string;
     blocks?: unknown[];
+    content?: string;
 }
 
 export interface BuilderBlogPost {

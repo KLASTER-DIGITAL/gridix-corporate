@@ -4,9 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowLeft, Calendar } from "lucide-react";
-import { RenderBuilderContent } from "@/components/builder-renderer";
+import { RichTextContent } from "@/components/RichTextContent";
 import { BuilderBlogPost } from "@/lib/types/blog-post";
-import { BuilderContent } from "@builder.io/sdk";
 
 export const revalidate = 60;
 
@@ -72,6 +71,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
     const { data } = content;
 
+    console.log("content", content);
+
     return (
         <main className="min-h-screen bg-slate-950 text-slate-200 selection:bg-indigo-500/30">
             {/* Breadcrumbs */}
@@ -123,17 +124,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <section className="py-20 bg-white/[0.02]">
                 <div className="container px-4 md:px-6 mx-auto">
                     <div className="max-w-3xl">
-                        {content.data?.blocks && content.data.blocks.length > 0 ? (
-                            <div className="prose prose-invert prose-slate max-w-none">
-                                <RenderBuilderContent
-                                    content={content as unknown as BuilderContent}
-                                    model="blog-post"
-                                />
-                            </div>
+                        {content.data?.content ? (
+                            <RichTextContent html={content.data.content} />
                         ) : (
                             <div className="bg-slate-900/40 border border-white/5 rounded-[2rem] p-10 backdrop-blur-sm">
                                 <p className="text-slate-300 font-medium leading-relaxed">
-                                    Этот пост пока без контента (blocks) — откройте запись в Builder.io и добавьте блоки.
+                                    Этот пост пока без контента — откройте запись в Builder.io и добавьте контент в поле content.
                                 </p>
                             </div>
                         )}

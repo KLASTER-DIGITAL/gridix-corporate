@@ -115,7 +115,7 @@ export function MegaMenu() {
 
                 <NavigationMenuItem>
                     <NavigationMenuLink asChild>
-                        <Link href="/integrations" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-slate-300 hover:text-white hover:bg-white/10 focus:bg-white/10 active:bg-white/10 font-medium")}>
+                        <Link href="/cases" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-slate-300 hover:text-white hover:bg-white/10 focus:bg-white/10 active:bg-white/10 font-medium")}>
                             Интеграции
                         </Link>
                     </NavigationMenuLink>
@@ -131,7 +131,7 @@ export function MegaMenu() {
 
                 <NavigationMenuItem>
                     <NavigationMenuLink asChild>
-                        <Link href="/cases" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-slate-300 hover:text-white hover:bg-white/10 focus:bg-white/10 active:bg-white/10 font-medium")}>
+                        <Link href="/blog" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-slate-300 hover:text-white hover:bg-white/10 focus:bg-white/10 active:bg-white/10 font-medium")}>
                             Блог
                         </Link>
                     </NavigationMenuLink>
