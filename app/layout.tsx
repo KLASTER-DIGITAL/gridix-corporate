@@ -12,35 +12,9 @@ const inter = Inter({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  // Try to fetch global settings
-  const settings = await builder.get('siteSettings', {
-    options: { noTargeting: true },
-    fields: "data.defaultTitle,data.siteName,data.defaultDescription,data.defaultOgImage"
-  }).promise();
-  const data = settings?.data || {};
-
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-    title: {
-      default: data.defaultTitle || 'Gridix Platform',
-      template: `%s | ${data.siteName || 'Gridix'}`,
-    },
-    description: data.defaultDescription || 'Профессиональная платформа для девелоперов и агентств.',
-    openGraph: {
-      type: 'website',
-      siteName: data.siteName || 'Gridix',
-      images: data.defaultOgImage ? [{ url: data.defaultOgImage }] : [],
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: data.siteName || 'Gridix Platform',
-      description: data.defaultDescription || 'Профессиональная платформа для девелоперов и агентств.',
-      images: data.defaultOgImage ? [data.defaultOgImage] : [],
-    },
+    title: 'Gridix Platform',
+    description: 'Профессиональная платформа для девелоперов и агентств.',
   };
 }
 
