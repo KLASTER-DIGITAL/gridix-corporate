@@ -5,18 +5,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
     // Fetch pages
-    const pages = await builder.getAll('page', {
-        options: { noTargeting: true },
-        fields: 'data.url,data.noindex,lastUpdated',
-        limit: 1000,
-    });
+    let pages: any[] = [];
+    try {
+        pages = await builder.getAll('page', {
+            options: { noTargeting: true },
+            fields: 'data.url,data.noindex,lastUpdated',
+            limit: 1000,
+        });
+    } catch (error) {
+        console.error('Sitemap: Failed to fetch pages:', error);
+    }
 
     // Fetch case studies
-    const cases = await builder.getAll('case-study', {
-        options: { noTargeting: true },
-        fields: 'data.slug,lastUpdated',
-        limit: 100,
-    });
+    let cases: any[] = [];
+    try {
+        cases = await builder.getAll('case-study', {
+            options: { noTargeting: true },
+            fields: 'data.slug,lastUpdated',
+            limit: 100,
+        });
+    } catch (error) {
+        console.error('Sitemap: Failed to fetch case studies:', error);
+    }
 
     const pageEntries: MetadataRoute.Sitemap = pages
         .filter(page => !page.data?.noindex)

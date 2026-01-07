@@ -12,12 +12,26 @@ const inter = Inter({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  // Try to fetch global settings
-  const settings = await builder.get('siteSettings', { options: { noTargeting: true } }).promise();
-  const data = settings?.data || {};
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  let metadataBase: URL;
+  try {
+    metadataBase = new URL(siteUrl);
+  } catch (e) {
+    console.error('Invalid NEXT_PUBLIC_SITE_URL:', siteUrl);
+    metadataBase = new URL('http://localhost:3000');
+  }
+
+  let data: any = {};
+  try {
+    // Try to fetch global settings
+    const settings = await builder.get('siteSettings', { options: { noTargeting: true } }).promise();
+    data = settings?.data || {};
+  } catch (error) {
+    console.error('Failed to fetch site settings from Builder.io:', error);
+  }
 
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+    metadataBase,
     title: {
       default: data.defaultTitle || 'Gridix Platform',
       template: `%s | ${data.siteName || 'Gridix'}`,
