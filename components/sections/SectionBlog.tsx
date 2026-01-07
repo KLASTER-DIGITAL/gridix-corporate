@@ -1,26 +1,53 @@
+'use client';
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
-
-import { builder } from "@/lib/builder";
+import { useState, useEffect } from "react";
+import { builder } from "@builder.io/react";
 import Link from "next/link";
 import Image from "next/image";
 import { BuilderBlogPost, BlogPostData } from "@/lib/types/blog-post";
 
-export const SectionBlog = async () => {
-    // Check if API key is set before fetching
-    if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
-        return null;
+export const SectionBlog = () => {
+    const [posts, setPosts] = useState<BuilderBlogPost[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const results = await builder.getAll("blog-post", {
+                    options: { noTargeting: true },
+                    limit: 3,
+                    fields: "data.title,data.slug,data.excerpt,data.date,data.coverImage",
+                    sort: {
+                        createdDate: -1,
+                    },
+                });
+                setPosts(results as unknown as BuilderBlogPost[]);
+            } catch (error) {
+                console.error("Error fetching blog posts:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPosts();
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="py-24 bg-slate-900 border-t border-white/5 relative overflow-hidden">
+                <div className="container px-4 md:px-6 mx-auto relative z-10">
+                    <div className="h-64 flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-500"></div>
+                    </div>
+                </div>
+            </section>
+        );
     }
 
-    const posts = (await builder.getAll("blog-post", {
-        options: { noTargeting: true },
-        limit: 3,
-        fields: "data.title,data.slug,data.excerpt,data.date,data.coverImage",
-        sort: {
-            createdDate: -1,
-        },
-    })) as unknown as BuilderBlogPost[];
+    if (posts.length === 0) return null;
 
     return (
         <section className="py-24 bg-slate-900 border-t border-white/5 relative overflow-hidden">
