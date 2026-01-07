@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
 import { builder } from "@/lib/builder";
 import Link from "next/link";
 import Image from "next/image";
-import { BuilderBlogPost, BlogPostData } from "@/lib/types/blog";
+import { BuilderBlogPost, BlogPostData } from "@/lib/types/blog-post";
 
 export const SectionBlog = async () => {
     // Check if API key is set before fetching
@@ -13,7 +13,7 @@ export const SectionBlog = async () => {
         return null;
     }
 
-    const posts = (await builder.getAll("post", {
+    const posts = (await builder.getAll("blog-post", {
         options: { noTargeting: true },
         limit: 3,
         sort: {
@@ -55,11 +55,8 @@ export const SectionBlog = async () => {
                             key={item.id}
                             title={item.data.title}
                             excerpt={item.data.excerpt}
-                            author={item.data.author}
-                            publishedAt={item.data.publishedAt}
-                            image={item.data.image}
-                            category={item.data.category}
-                            imageGradient={item.data.imageGradient}
+                            date={item.data.date}
+                            coverImage={item.data.coverImage}
                             slug={item.data.slug}
                         />
                     ))}
@@ -70,16 +67,15 @@ export const SectionBlog = async () => {
 };
 
 interface BlogCardProps extends Partial<BlogPostData> {
-    imageGradient?: string;
 }
 
-const BlogCard = ({ title, excerpt, author, publishedAt, image, category, imageGradient, slug }: BlogCardProps & { image?: string }) => (
+const BlogCard = ({ title, excerpt, date, coverImage, slug }: BlogCardProps) => (
     <Link href={`/blog/${slug}`} className="block group">
         <Card className="border-0 bg-transparent overflow-hidden h-full">
-            <div className={`h-48 w-full rounded-2xl mb-6 relative ${imageGradient || 'bg-slate-800'} border border-white/10 group-hover:border-white/20 transition-colors overflow-hidden`}>
-                {image ? (
+            <div className={`h-48 w-full rounded-2xl mb-6 relative bg-slate-800 border border-white/10 group-hover:border-white/20 transition-colors overflow-hidden`}>
+                {coverImage ? (
                     <Image
-                        src={image}
+                        src={coverImage}
                         alt={title || "Blog post"}
                         fill
                         className="object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-500"
@@ -92,15 +88,15 @@ const BlogCard = ({ title, excerpt, author, publishedAt, image, category, imageG
                 )}
             </div>
             <CardContent className="p-0">
-                <div className="text-sm font-medium text-blue-400 mb-2">{category || 'Статья'}</div>
+                <div className="text-sm font-medium text-blue-400 mb-2">Статья</div>
                 <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors line-clamp-2">{title}</h3>
                 <p className="text-sm text-slate-400 mb-4 line-clamp-2">{excerpt}</p>
                 <div className="flex items-center gap-4 text-xs text-slate-500 uppercase tracking-wider pt-4 border-t border-white/10">
-                    <div>{author || 'Gridix'}</div>
-                    {publishedAt && (
+                    <div>Gridix</div>
+                    {date && (
                         <div className="flex items-center gap-1">
                             <Calendar className="w-3 h-3" />
-                            {new Date(publishedAt).toLocaleDateString('ru-RU')}
+                            {new Date(date).toLocaleDateString('ru-RU')}
                         </div>
                     )}
                 </div>
