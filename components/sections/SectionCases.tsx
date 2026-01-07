@@ -13,13 +13,20 @@ export const SectionCases = async () => {
         return null;
     }
 
-    const cases = (await builder.getAll("case-study", {
-        options: { noTargeting: true },
-        limit: 3,
-        sort: {
-            createdDate: -1,
-        },
-    })) as unknown as BuilderCaseStudy[];
+    let cases: BuilderCaseStudy[] = [];
+
+    try {
+        cases = (await builder.getAll("case-study", {
+            options: { noTargeting: true },
+            limit: 3,
+            sort: {
+                createdDate: -1,
+            },
+        })) as unknown as BuilderCaseStudy[];
+    } catch (error) {
+        console.error("Failed to fetch cases:", error);
+        // Continue with empty cases array
+    }
 
     return (
         <section className="py-24 bg-slate-900 border-t border-white/5 relative overflow-hidden">

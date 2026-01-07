@@ -47,9 +47,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const resolvedParams = await params;
     const urlPath = '/' + (resolvedParams?.slug?.join('/') || '');
 
-    const content = await builder.get('page', {
-        userAttributes: { urlPath },
-    }).promise();
+    let content = null;
+    try {
+        content = await builder.get('page', {
+            userAttributes: { urlPath },
+        }).promise();
+    } catch (error) {
+        console.error('Failed to fetch builder content for metadata:', error);
+    }
 
     if (!content) {
         return {
@@ -89,9 +94,14 @@ export default async function Page({ params, searchParams }: PageProps) {
     const resolvedSearchParams = await searchParams;
     const urlPath = '/' + (resolvedParams?.slug?.join('/') || '');
 
-    const content = await builder.get('page', {
-        userAttributes: { urlPath },
-    }).promise();
+    let content = null;
+    try {
+        content = await builder.get('page', {
+            userAttributes: { urlPath },
+        }).promise();
+    } catch (error) {
+        console.error('Failed to fetch builder content:', error);
+    }
 
     // Check if we are in preview mode
     // Builder preview adds query params like 'builder.preview=...'

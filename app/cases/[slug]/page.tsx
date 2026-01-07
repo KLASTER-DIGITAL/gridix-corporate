@@ -16,12 +16,17 @@ interface CaseStudyPageProps {
 }
 
 async function getCaseContent(slug: string) {
-    const content = (await builder.get("case-study", {
-        query: {
-            "data.slug": slug,
-        },
-    }).promise()) as unknown as BuilderCaseStudy;
-    return content;
+    try {
+        const content = (await builder.get("case-study", {
+            query: {
+                "data.slug": slug,
+            },
+        }).promise()) as unknown as BuilderCaseStudy;
+        return content;
+    } catch (error) {
+        console.error("Failed to fetch case study content:", error);
+        return null;
+    }
 }
 
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
@@ -41,14 +46,19 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 }
 
 export async function generateStaticParams() {
-    const cases = (await builder.getAll("case-study", {
-        options: { noTargeting: true },
-        fields: "data.slug",
-    })) as unknown as BuilderCaseStudy[];
+    try {
+        const cases = (await builder.getAll("case-study", {
+            options: { noTargeting: true },
+            fields: "data.slug",
+        })) as unknown as BuilderCaseStudy[];
 
-    return cases.map((item) => ({
-        slug: item.data.slug,
-    }));
+        return cases.map((item) => ({
+            slug: item.data.slug,
+        }));
+    } catch (error) {
+        console.error("Failed to generate static params for cases:", error);
+        return [];
+    }
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {

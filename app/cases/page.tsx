@@ -17,12 +17,18 @@ export default async function CasesPage() {
         );
     }
 
-    const cases = (await builder.getAll("case-study", {
-        options: { noTargeting: true },
-        sort: {
-            createdDate: -1,
-        },
-    })) as unknown as BuilderCaseStudy[];
+    let cases: BuilderCaseStudy[] = [];
+
+    try {
+        cases = (await builder.getAll("case-study", {
+            options: { noTargeting: true },
+            sort: {
+                createdDate: -1,
+            },
+        })) as unknown as BuilderCaseStudy[];
+    } catch (error) {
+        console.error("Failed to fetch cases:", error);
+    }
 
 
     return (

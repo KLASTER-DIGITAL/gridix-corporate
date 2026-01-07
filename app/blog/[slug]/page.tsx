@@ -14,15 +14,19 @@ interface BlogPostPageProps {
 }
 
 async function getPostContent(slug: string) {
-    const content = (await builder
-        .get("blog-post", {
-            query: {
-                "data.slug": slug,
-            },
-        })
-        .promise()) as unknown as BuilderBlogPost;
-
-    return content;
+    try {
+        const content = (await builder
+            .get("blog-post", {
+                query: {
+                    "data.slug": slug,
+                },
+            })
+            .promise()) as unknown as BuilderBlogPost;
+        return content;
+    } catch (error) {
+        console.error("Failed to fetch blog post content:", error);
+        return null;
+    }
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
@@ -42,14 +46,19 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export async function generateStaticParams() {
-    const posts = (await builder.getAll("blog-post", {
-        options: { noTargeting: true },
-        fields: "data.slug",
-    })) as unknown as BuilderBlogPost[];
+    try {
+        const posts = (await builder.getAll("blog-post", {
+            options: { noTargeting: true },
+            fields: "data.slug",
+        })) as unknown as BuilderBlogPost[];
 
-    return posts.map((item) => ({
-        slug: item.data.slug,
-    }));
+        return posts.map((item) => ({
+            slug: item.data.slug,
+        }));
+    } catch (error) {
+        console.error("Failed to generate static params for blog:", error);
+        return [];
+    }
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {

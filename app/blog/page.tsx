@@ -15,12 +15,18 @@ export default async function BlogPage() {
         );
     }
 
-    const posts = (await builder.getAll("blog-post", {
-        options: { noTargeting: true },
-        sort: {
-            createdDate: -1,
-        },
-    })) as unknown as BuilderBlogPost[];
+    let posts: BuilderBlogPost[] = [];
+
+    try {
+        posts = (await builder.getAll("blog-post", {
+            options: { noTargeting: true },
+            sort: {
+                createdDate: -1,
+            },
+        })) as unknown as BuilderBlogPost[];
+    } catch (error) {
+        console.error("Failed to fetch blog posts:", error);
+    }
 
     console.log("posts", posts);
 
