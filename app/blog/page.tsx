@@ -20,6 +20,7 @@ export default async function BlogPage() {
     const posts = (await builder.getAll("blog-post", {
         options: { noTargeting: true },
         limit: 10,
+        fields: "data.title,data.slug,data.excerpt,data.coverImage,data.date",
         sort: {
             createdDate: -1,
         },
