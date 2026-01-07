@@ -13,7 +13,10 @@ const inter = Inter({
 
 export async function generateMetadata(): Promise<Metadata> {
   // Try to fetch global settings
-  const settings = await builder.get('siteSettings', { options: { noTargeting: true } }).promise();
+  const settings = await builder.get('siteSettings', {
+    options: { noTargeting: true },
+    fields: "data.defaultTitle,data.siteName,data.defaultDescription,data.defaultOgImage"
+  }).promise();
   const data = settings?.data || {};
 
   return {
