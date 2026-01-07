@@ -20,6 +20,7 @@ export default async function CasesPage() {
     const cases = (await builder.getAll("cases-study", {
         options: { noTargeting: true },
         limit: 10,
+        fields: "data.title,data.slug,data.company,data.summary,data.image,data.stats,data.country,data.city,data.industry,data.imageGradient,data.date",
         sort: {
             createdDate: -1,
         },
