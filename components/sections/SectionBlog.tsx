@@ -16,6 +16,7 @@ export const SectionBlog = async () => {
     const posts = (await builder.getAll("blog-post", {
         options: { noTargeting: true },
         limit: 3,
+        fields: "data.title,data.slug,data.excerpt,data.date,data.coverImage",
         sort: {
             createdDate: -1,
         },
