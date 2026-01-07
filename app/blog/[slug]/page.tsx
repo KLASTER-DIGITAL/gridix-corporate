@@ -5,7 +5,7 @@ import { ArrowLeft, Calendar, User, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { BuilderBlogPost } from "@/lib/types/blog";
+import { BuilderBlogPost } from "@/lib/types/blog-post";
 import { BuilderContent } from "@builder.io/sdk";
 import { Metadata } from "next";
 
@@ -16,7 +16,7 @@ interface BlogPageProps {
 }
 
 async function getBlogContent(slug: string) {
-    const content = (await builder.get("post", {
+    const content = (await builder.get("blog-post", {
         query: {
             "data.slug": slug,
         },
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: BlogPageProps): Promise<Metad
 }
 
 export async function generateStaticParams() {
-    const posts = (await builder.getAll("post", {
+    const posts = (await builder.getAll("blog-post", {
         options: { noTargeting: true },
         fields: "data.slug",
     })) as unknown as BuilderBlogPost[];
@@ -80,7 +80,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
                         <span>/</span>
                         <Link href="/blog" className="hover:text-blue-400 transition-colors">Блог</Link>
                         <span>/</span>
-                        <span className="text-white truncate max-w-[200px]">{data.category || "Статья"}</span>
+                        <span className="text-white truncate max-w-[520px]">{data.title}</span>
                     </nav>
                 </div>
             </div>
@@ -95,55 +95,39 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                             </span>
-                            {data.category || "Блог GRIDIX"}
+                            Блог GRIDIX
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black text-white mb-8 leading-[1.1] tracking-tight">
                             {data.title}
                         </h1>
-                        <p className="text-xl md:text-2xl text-slate-400 leading-relaxed mb-12 font-medium">
-                            {data.excerpt}
-                        </p>
+                        {data.excerpt && (
+                            <p className="text-xl md:text-2xl text-slate-400 leading-relaxed mb-12 font-medium">
+                                {data.excerpt}
+                            </p>
+                        )}
 
                         {/* Article Meta */}
                         <div className="flex flex-wrap items-center gap-6 pb-12 border-b border-white/10">
-                            <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center font-black text-white text-lg">
-                                    {data.author?.charAt(0) || "G"}
-                                </div>
-                                <div>
-                                    <div className="text-sm font-bold text-white">{data.author || "Gridix"}</div>
-                                    <div className="text-xs text-slate-500 uppercase tracking-widest">{data.authorPosition || "Автор"}</div>
-                                </div>
-                            </div>
                             <div className="flex items-center gap-2 text-sm font-medium text-slate-400">
                                 <Calendar className="w-4 h-4" />
-                                {data.publishedAt ? new Date(data.publishedAt).toLocaleDateString('ru-RU', { 
+                                {data.date ? new Date(data.date).toLocaleDateString('ru-RU', { 
                                     year: 'numeric',
                                     month: 'long',
                                     day: 'numeric'
                                 }) : '2025'}
                             </div>
-                            {data.tags && data.tags.length > 0 && (
-                                <div className="flex items-center gap-2 ml-auto">
-                                    {data.tags.slice(0, 2).map((tag, i) => (
-                                        <span key={i} className="text-xs font-bold bg-white/5 text-slate-300 px-3 py-1 rounded-lg border border-white/5">
-                                            #{tag}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Featured Image */}
-            {data.image && (
+            {(data.coverImage) && (
                 <section className="py-12">
                     <div className="container px-4 md:px-6 mx-auto">
                         <div className="relative aspect-video rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
                             <Image
-                                src={data.image}
+                                src={data.coverImage!}
                                 alt={data.title}
                                 fill
                                 priority
@@ -161,12 +145,11 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
                         {/* Main Content */}
                         <div className="lg:col-span-8 space-y-12 prose prose-invert max-w-none">
                             {/* Builder Content Blocks */}
-                            {content.data?.blocks && content.data.blocks.length > 0 && (
-                                <RenderBuilderContent content={content as unknown as BuilderContent} model="post" />
-                            )}
-
-                            {/* Fallback Paragraph */}
-                            {(!content.data?.blocks || content.data.blocks.length === 0) && (
+                            {content.data?.blocks && content.data.blocks.length > 0 ? (
+                                <RenderBuilderContent content={content as unknown as BuilderContent} model="blog-post" />
+                            ) : content.data?.content ? (
+                                <div dangerouslySetInnerHTML={{ __html: content.data.content }} />
+                            ) : (
                                 <div className="bg-slate-900/40 border border-white/5 rounded-2xl p-8 text-slate-300">
                                     <p className="text-lg leading-relaxed">
                                         Содержание статьи загружается из Builder.io. Добавьте содержимое в блоки Builder для этого поста.
@@ -185,39 +168,15 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
                                         О статье
                                     </h3>
                                     <div className="space-y-6">
-                                        {data.category && (
-                                            <div>
-                                                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Категория</div>
-                                                <div className="text-base text-white font-medium">{data.category}</div>
-                                            </div>
-                                        )}
-                                        {data.author && (
-                                            <div>
-                                                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Автор</div>
-                                                <div className="text-base text-white font-medium">{data.author}</div>
-                                            </div>
-                                        )}
-                                        {data.publishedAt && (
+                                        {data.date && (
                                             <div>
                                                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Опубликовано</div>
                                                 <div className="text-base text-white font-medium">
-                                                    {new Date(data.publishedAt).toLocaleDateString('ru-RU', { 
+                                                    {new Date(data.date).toLocaleDateString('ru-RU', { 
                                                         year: 'numeric',
                                                         month: 'long',
                                                         day: 'numeric'
                                                     })}
-                                                </div>
-                                            </div>
-                                        )}
-                                        {data.tags && data.tags.length > 0 && (
-                                            <div>
-                                                <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Теги</div>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {data.tags.map((tag, i) => (
-                                                        <span key={i} className="text-xs font-bold bg-blue-600/10 text-blue-300 px-3 py-1.5 rounded-lg border border-blue-500/20">
-                                                            #{tag}
-                                                        </span>
-                                                    ))}
                                                 </div>
                                             </div>
                                         )}
@@ -249,7 +208,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
                     <h2 className="text-3xl md:text-5xl font-black text-white mb-8 max-w-2xl">
                         Читайте другие статьи
                     </h2>
-                    <Link href="/blog">
+                    <Link href="/blog" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors font-black uppercase text-xs tracking-widest">
                         <Button className="bg-blue-600 hover:bg-blue-500 text-white font-black px-12 h-16 rounded-[1.5rem] text-lg uppercase tracking-widest transition-all active:scale-95 shadow-xl shadow-blue-600/20 inline-flex items-center gap-2">
                             Все статьи
                             <ArrowRight className="w-5 h-5" />
