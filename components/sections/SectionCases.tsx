@@ -16,6 +16,7 @@ export const SectionCases = async () => {
     const cases = (await builder.getAll("cases-study", {
         options: { noTargeting: true },
         limit: 3,
+        fields: "data.title,data.slug,data.company,data.image,data.stats,data.imageGradient",
         sort: {
             createdDate: -1,
         },
