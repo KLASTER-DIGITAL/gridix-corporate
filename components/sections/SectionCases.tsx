@@ -1,26 +1,53 @@
+'use client';
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-
-import { builder } from "@/lib/builder";
+import { useState, useEffect } from "react";
+import { builder } from "@builder.io/react";
 import Link from "next/link";
 import Image from "next/image";
 import { BuilderCaseStudy, CaseStudyData } from "@/lib/types/case-study";
 
-export const SectionCases = async () => {
-    // Check if API key is set before fetching
-    if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
-        return null;
+export const SectionCases = () => {
+    const [cases, setCases] = useState<BuilderCaseStudy[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCases = async () => {
+            try {
+                const results = await builder.getAll("cases-study", {
+                    options: { noTargeting: true },
+                    limit: 3,
+                    fields: "data.title,data.slug,data.company,data.image,data.stats,data.imageGradient",
+                    sort: {
+                        createdDate: -1,
+                    },
+                });
+                setCases(results as unknown as BuilderCaseStudy[]);
+            } catch (error) {
+                console.error("Error fetching cases:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCases();
+    }, []);
+
+    if (loading) {
+        return (
+            <section className="py-24 bg-slate-900 border-t border-white/5 relative overflow-hidden">
+                <div className="container px-4 md:px-6 mx-auto relative z-10">
+                    <div className="h-64 flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                    </div>
+                </div>
+            </section>
+        );
     }
 
-    const cases = (await builder.getAll("cases-study", {
-        options: { noTargeting: true },
-        limit: 3,
-        fields: "data.title,data.slug,data.company,data.image,data.stats,data.imageGradient",
-        sort: {
-            createdDate: -1,
-        },
-    })) as unknown as BuilderCaseStudy[];
+    if (cases.length === 0) return null;
 
     return (
         <section className="py-24 bg-slate-900 border-t border-white/5 relative overflow-hidden">
