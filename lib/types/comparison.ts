@@ -16,6 +16,7 @@ export interface ComparisonSpotlight {
     description: string;
     statValue: string;
     statLabel: string;
+    image?: string;
 }
 
 export interface ComparisonPainPoint {

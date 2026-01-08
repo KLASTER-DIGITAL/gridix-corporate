@@ -58,19 +58,30 @@ export const FeatureSpotlight = ({ data }: FeatureSpotlightProps) => {
 
                                 <div className="flex-1 w-full max-w-xl">
                                     <div className={`aspect-square rounded-3xl bg-gradient-to-br ${gradient} border border-slate-200 shadow-2xl relative overflow-hidden group`}>
-                                        <div className="absolute inset-8 bg-white/80 backdrop-blur rounded-2xl border border-slate-100 shadow-lg p-6 flex flex-col gap-4">
-                                            <div className="h-6 w-1/3 bg-slate-100 rounded" />
-                                            <div className="flex-1 flex gap-4">
-                                                <div className="flex-[2] bg-slate-50 rounded-lg flex flex-col p-4 gap-2">
-                                                    {[1, 2, 3, 4].map(i => <div key={i} className="h-4 bg-slate-100 rounded w-full" style={{ opacity: 1 - i * 0.2 }} />)}
-                                                </div>
-                                                <div className="flex-1 flex flex-col gap-4">
-                                                    <div className="aspect-square bg-blue-100 rounded-lg animate-pulse" />
-                                                    <div className="flex-1 bg-indigo-50 rounded-lg" />
+                                        {spot.image ? (
+                                            <div className="absolute inset-0">
+                                                <img
+                                                    src={spot.image}
+                                                    alt={spot.title}
+                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                                            </div>
+                                        ) : (
+                                            <div className="absolute inset-8 bg-white/80 backdrop-blur rounded-2xl border border-slate-100 shadow-lg p-6 flex flex-col gap-4">
+                                                <div className="h-6 w-1/3 bg-slate-100 rounded" />
+                                                <div className="flex-1 flex gap-4">
+                                                    <div className="flex-[2] bg-slate-50 rounded-lg flex flex-col p-4 gap-2">
+                                                        {[1, 2, 3, 4].map(i => <div key={i} className="h-4 bg-slate-100 rounded w-full" style={{ opacity: 1 - i * 0.2 }} />)}
+                                                    </div>
+                                                    <div className="flex-1 flex flex-col gap-4">
+                                                        <div className="aspect-square bg-blue-100 rounded-lg animate-pulse" />
+                                                        <div className="flex-1 bg-indigo-50 rounded-lg" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                                        )}
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
                                     </div>
                                 </div>
                             </motion.div>

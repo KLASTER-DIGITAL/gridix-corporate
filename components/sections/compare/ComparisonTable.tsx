@@ -29,30 +29,31 @@ export function ComparisonTable({ data }: ComparisonTableProps) {
                     </p>
                 </div>
 
-                <div className="relative overflow-x-auto rounded-3xl border border-white/10 bg-slate-900/50 backdrop-blur-sm shadow-2xl">
-                    <table className="w-full border-collapse text-left">
-                        <thead>
-                            <tr className="border-b border-white/10">
-                                <th className="p-8 text-slate-400 font-medium min-w-[280px]">Функционал</th>
-                                <th className="p-8 text-center min-w-[160px]">
+                <div className="relative overflow-x-auto rounded-3xl border border-white/10 bg-slate-900/50 backdrop-blur-sm shadow-2xl max-h-[80vh] scrollbar-thin scrollbar-thumb-blue-600/20 scrollbar-track-transparent">
+                    <table className="w-full border-collapse text-left relative">
+                        <thead className="sticky top-0 z-20 backdrop-blur-xl bg-slate-950/90 shadow-lg after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-white/10">
+                            <tr>
+                                <th className="p-8 text-slate-400 font-medium min-w-[280px] bg-slate-950/90">Функционал</th>
+                                <th className="p-8 text-center min-w-[160px] bg-slate-950/90">
                                     <div className="flex flex-col items-center gap-1">
                                         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Legacy</span>
                                         <span className="text-xl font-bold text-slate-400">{data.competitorName || "Flatris"}</span>
                                     </div>
                                 </th>
-                                <th className="p-8 text-center min-w-[160px] bg-blue-500/5">
+                                <th className="p-8 text-center min-w-[160px] bg-blue-500/10 backdrop-blur-md border-x border-blue-500/10">
                                     <div className="flex flex-col items-center gap-1">
                                         <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">Live Now</span>
                                         <span className="text-xl font-bold text-white">GRIDIX v1</span>
                                     </div>
                                 </th>
-                                <th className="p-8 text-center min-w-[180px] bg-blue-600/10 relative">
+                                <th className="p-8 text-center min-w-[180px] bg-blue-600/10 backdrop-blur-md relative overflow-hidden">
+                                    <div className="absolute inset-0 bg-blue-500/5 animate-pulse-slow pointer-events-none" />
                                     <div className="absolute top-0 inset-x-0 -translate-y-1/2 flex justify-center">
-                                        <span className="bg-blue-600 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-lg border border-blue-400/30">Next-Gen</span>
+                                        <span className="bg-blue-600 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-[0_0_15px_rgba(37,99,235,0.5)] border border-blue-400/30">Next-Gen</span>
                                     </div>
-                                    <div className="flex flex-col items-center gap-1">
+                                    <div className="flex flex-col items-center gap-1 relative z-10">
                                         <span className="text-[10px] font-bold text-blue-300 uppercase tracking-widest">Coming Soon</span>
-                                        <span className="text-xl font-bold text-blue-400">GRIDIX v2</span>
+                                        <span className="text-xl font-bold text-blue-400 glow-text">GRIDIX v2</span>
                                     </div>
                                 </th>
                             </tr>
@@ -60,18 +61,18 @@ export function ComparisonTable({ data }: ComparisonTableProps) {
                         <tbody className="divide-y divide-white/5">
                             {data.comparisonTable.map((section, idx) => (
                                 <React.Fragment key={idx}>
-                                    <tr className="bg-white/5">
-                                        <td colSpan={4} className="px-8 py-4 text-xs font-black text-slate-500 uppercase tracking-[0.2em]">
+                                    <tr className="bg-slate-950/50 sticky top-[100px] z-10 backdrop-blur-md">
+                                        <td colSpan={4} className="px-8 py-4 text-xs font-black text-slate-500 uppercase tracking-[0.2em] bg-gradient-to-r from-slate-900 via-slate-900/50 to-transparent border-t border-b border-white/5">
                                             {section.categoryName}
                                         </td>
                                     </tr>
                                     {section.features?.map((item, itemIdx) => (
                                         <motion.tr
                                             key={itemIdx}
-                                            className="group hover:bg-white/[0.02] transition-colors"
+                                            className="group hover:bg-blue-500/[0.02] transition-colors"
                                             initial={{ opacity: 0 }}
                                             whileInView={{ opacity: 1 }}
-                                            viewport={{ once: true }}
+                                            viewport={{ once: true, margin: "-50px" }}
                                         >
                                             <td className="p-8 font-medium text-slate-300">
                                                 <div className="flex items-center gap-2 group/info">

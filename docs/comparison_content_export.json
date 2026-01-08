@@ -1,206 +1,199 @@
-[
-    {
-        "name": "GRIDIX vs Flatris (RU)",
-        "data": {
-            "slug": "gridix-vs-flatris",
-            "heroBadge": "Сравнение платформ 2026",
-            "heroTitle": "Забудьте про прошлый век. Стройте будущее продаж.",
-            "heroSubtitle": "Почему передовые девелоперы переходят с Flatris на GRIDIX? Сравнение функций, экономики и возможностей роста в одной таблице.",
-            "competitorName": "Flatris",
-            "gridixBulletPoints": [
-                "Глобальная экосистема V2",
-                "AI Yield Management (+15% выручки)",
-                "Мультиязычность \"из коробки\""
-            ],
-            "whySwitchTitle": "Почему вы переросли Flatris?",
-            "whySwitchSubtitle": "Стандартные решения хороши для малого бизнеса. Но если ваша цель — масштабирование и международная экпансия, вам нужна экосистема.",
-            "painPoints": [
+{
+    "title": "GRIDIX vs Flatris: Битва Экосистем",
+    "subtitle": "Почему лидеры рынка выбирают GRIDIX для масштабирования продаж",
+    "heroImage": "https://cdn.builder.io/api/v1/image/assets%2F483c7b9d733242189524cac06e748d77%2Fhero-comparison.png",
+    "competitorName": "Flatris / Profitbase",
+    "whySwitch": [
+        {
+            "title": "Устаревший UX",
+            "description": "Клиенты уходят с сайта, потому что не могут найти нужную квартиру в 3 клика."
+        },
+        {
+            "title": "Слабая SEO-структура",
+            "description": "Потеря органического трафика из-за отсутствия динамических посадочных страниц."
+        },
+        {
+            "title": "Нет мобильного приложения",
+            "description": "Потеря контакта с клиентом после сделки и отсутствие допродаж."
+        },
+        {
+            "title": "Медленные фиды",
+            "description": "Актуализация цен на классифайдах занимает часы, а не минуты."
+        }
+    ],
+    "comparisonTable": [
+        {
+            "categoryName": "Core Platform (Платформа)",
+            "features": [
                 {
-                    "title": "Фрагментация данных",
-                    "description": "У Flatris шахматка существует отдельно от маркетинга и внешних агентов. В GRIDIX — это единый живой организм с SSOT-архитектурой."
+                    "featureName": "Технология",
+                    "competitorValue": "Monolith / Old Stack",
+                    "gridixV1Value": "Next.js 14 (SSG/SSR)",
+                    "gridixV2Value": "Next.js 15 + Turbo",
+                    "isHighlighted": true
                 },
                 {
-                    "title": "Упущенная выгода",
-                    "description": "Без динамического ценообразования и AI-аналитики вы теряете в среднем 5-7% маржи на каждом проданном объекте."
+                    "featureName": "Скорость загрузки (LCP)",
+                    "competitorValue": "1.5s - 3.0s",
+                    "gridixV1Value": "0.8s",
+                    "gridixV2Value": "< 0.5s (Instant)",
+                    "isHighlighted": true
                 },
                 {
-                    "title": "Сложность интеграций",
-                    "description": "GRIDIX спроектирован как API-first платформа. Мы встраиваемся в ваш IT-ландшафт за дни, а не месяцы, обеспечивая сквозную аналитику."
+                    "featureName": "Мобильная адаптивность",
+                    "competitorValue": "Basic Responsive",
+                    "gridixV1Value": "Mobile-First",
+                    "gridixV2Value": "PWA 2.0 + Native Feel"
+                },
+                {
+                    "featureName": "SEO-архитектура",
+                    "competitorValue": "Static URLs",
+                    "gridixV1Value": "Dynamic Slugs",
+                    "gridixV2Value": "ISR + Auto-Metadata",
+                    "isHighlighted": true
+                },
+                {
+                    "featureName": "Отказоустойчивость",
+                    "competitorValue": "99.0%",
+                    "gridixV1Value": "99.9%",
+                    "gridixV2Value": "99.99% (Edge Edge)"
                 }
-            ],
-            "spotlights": [
+            ]
+        },
+        {
+            "categoryName": "Sales Engine (Продажи)",
+            "features": [
                 {
-                    "title": "AI Yield Management (Будущее v2)",
-                    "statValue": "+15-30%",
-                    "description": "В отличие от Flatris, который просто хранит цены, GRIDIX v2 будет анализировать спрос в реальном времени. Система подскажет, когда пора повышать цены для максимизации прибыли."
+                    "featureName": "Интерактивный Генплан",
+                    "competitorValue": "2D SVG (Static)",
+                    "gridixV1Value": "WebGL 2.5D",
+                    "gridixV2Value": "3D WebGL + Raytracing",
+                    "isHighlighted": true
                 },
                 {
-                    "title": "Глобальная экосистема продаж",
-                    "statValue": "0 ошибок",
-                    "description": "Ваш проект становится доступен тысячам проверенных агентов по всему миру через единый кабинет. Фиксация клиента, мгновенное бронирование и автоматическое уведомление — всё в одном месте."
+                    "featureName": "Шахматка квартир",
+                    "competitorValue": "Табличная",
+                    "gridixV1Value": "Визуальная",
+                    "gridixV2Value": "AI-Smart Grouping"
                 },
                 {
-                    "title": "Мгновенный старт за 2 недели",
-                    "statValue": "2 недели",
-                    "description": "Забудьте про месяцы внедрения. Импорт всей базы из Excel в один клик и отрисовка SVG-зон встроенным редактором позволяют запустить продажи ЖК быстрее конкурентов."
+                    "featureName": "Динамическое ценообразование",
+                    "competitorValue": false,
+                    "gridixV1Value": true,
+                    "gridixV2Value": "AI-Predictive Models",
+                    "isHighlighted": true
+                },
+                {
+                    "featureName": "Бронирование онлайн",
+                    "competitorValue": "Заявка на почту",
+                    "gridixV1Value": "Эквайринг",
+                    "gridixV2Value": "SberPay / SBPE + Escrow"
+                },
+                {
+                    "featureName": "Генерация презентаций (PDF)",
+                    "competitorValue": "Стандартный шаблон",
+                    "gridixV1Value": "Брендированный PDF",
+                    "gridixV2Value": "Динамический Лендинг лота"
                 }
-            ],
-            "comparisonTable": [
+            ]
+        },
+        {
+            "categoryName": "Marketing Ecosystem (Маркетинг)",
+            "features": [
                 {
-                    "categoryName": "Визуализация и Продукт",
-                    "features": [
-                        {
-                            "featureName": "Интерактивная шахматка",
-                            "competitorValue": "Yes",
-                            "gridixV1Value": "Yes",
-                            "gridixV2Value": "Yes"
-                        },
-                        {
-                            "featureName": "3D-планировки в карточке",
-                            "competitorValue": "No",
-                            "gridixV1Value": "Yes",
-                            "gridixV2Value": "Yes"
-                        },
-                        {
-                            "featureName": "Умные фильтры (UX-лидер)",
-                            "competitorValue": "Basic",
-                            "gridixV1Value": "Advanced",
-                            "gridixV2Value": "Premium"
-                        },
-                        {
-                            "featureName": "Мультиязычность (4+ языка)",
-                            "competitorValue": "Single",
-                            "gridixV1Value": "Yes",
-                            "gridixV2Value": "Yes"
-                        }
-                    ]
+                    "featureName": "Авто-выгрузка (Фиды)",
+                    "competitorValue": "Раз в сутки",
+                    "gridixV1Value": "Раз в час",
+                    "gridixV2Value": "Real-time (Webhooks)",
+                    "isHighlighted": true
                 },
                 {
-                    "categoryName": "Продажи и CRM",
-                    "features": [
-                        {
-                            "featureName": "Синхронизация AmoCRM/Bitrix",
-                            "competitorValue": "Yes",
-                            "gridixV1Value": "Yes",
-                            "gridixV2Value": "Yes"
-                        },
-                        {
-                            "featureName": "Динамическое ценообразование",
-                            "competitorValue": "No",
-                            "gridixV1Value": "Yes",
-                            "gridixV2Value": "Yes"
-                        },
-                        {
-                            "featureName": "Кабинет внешнего агента",
-                            "competitorValue": "Basic",
-                            "gridixV1Value": "Professional",
-                            "gridixV2Value": "Ecosystem"
-                        },
-                        {
-                            "featureName": "Blockchain-защита сделок",
-                            "competitorValue": "No",
-                            "gridixV1Value": "No",
-                            "gridixV2Value": "Yes",
-                            "isHighlighted": true
-                        }
-                    ]
+                    "featureName": "Сквозная аналитика",
+                    "competitorValue": "Нет / Базовая",
+                    "gridixV1Value": "Roistat / Calltouch",
+                    "gridixV2Value": "Native AI Analytics"
                 },
                 {
-                    "categoryName": "GRIDIX V2: Будущее (Roadmap)",
-                    "features": [
-                        {
-                            "featureName": "AI Yield Management (+15-30% выручки)",
-                            "competitorValue": "No",
-                            "gridixV1Value": "No",
-                            "gridixV2Value": "Yes",
-                            "isHighlighted": true
-                        },
-                        {
-                            "featureName": "AI Matchmaking (подбор покупателей)",
-                            "competitorValue": "No",
-                            "gridixV1Value": "No",
-                            "gridixV2Value": "Yes",
-                            "isHighlighted": true
-                        },
-                        {
-                            "featureName": "Глобальная сеть агентств",
-                            "competitorValue": "No",
-                            "gridixV1Value": "No",
-                            "gridixV2Value": "Yes",
-                            "isHighlighted": true
-                        }
-                    ]
+                    "featureName": "3D Туры и Панорамы",
+                    "competitorValue": false,
+                    "gridixV1Value": "Iframe Integration",
+                    "gridixV2Value": "Native Seamless Embed"
+                },
+                {
+                    "featureName": "Морфинг планировок",
+                    "competitorValue": false,
+                    "gridixV1Value": true,
+                    "gridixV2Value": "Auto-Furniture Placement"
+                }
+            ]
+        },
+        {
+            "categoryName": "Customer Experience (Клиент)",
+            "features": [
+                {
+                    "featureName": "Личный кабинет покупателя",
+                    "competitorValue": "Базовый",
+                    "gridixV1Value": "Документы + Статус",
+                    "gridixV2Value": "SuperApp (Services + Community)",
+                    "isHighlighted": true
+                },
+                {
+                    "featureName": "Мобильное приложение (iOS/Android)",
+                    "competitorValue": false,
+                    "gridixV1Value": "WebView",
+                    "gridixV2Value": "Native React Native",
+                    "isHighlighted": true
+                },
+                {
+                    "featureName": "Ипотечный калькулятор",
+                    "competitorValue": "Простой",
+                    "gridixV1Value": "С актуальными ставками",
+                    "gridixV2Value": "AI-Scoring + Bank Integration"
+                },
+                {
+                    "featureName": "Программа лояльности",
+                    "competitorValue": false,
+                    "gridixV1Value": false,
+                    "gridixV2Value": "Blockchain Points & Rewards"
                 }
             ]
         }
-    },
-    {
-        "name": "GRIDIX vs Flatris (EN)",
-        "data": {
-            "slug": "gridix-vs-flatris",
-            "heroBadge": "Platform Comparison 2026",
-            "heroTitle": "Forget the Last Century. Build the Future of Sales.",
-            "heroSubtitle": "Why leading developers switch from Flatris to GRIDIX? Compare features, economics, and growth potential in one table.",
-            "competitorName": "Flatris",
-            "gridixBulletPoints": [
-                "Global Ecosystem V2",
-                "AI Yield Management (+15% revenue)",
-                "Multilingual out-of-the-box"
-            ],
-            "whySwitchTitle": "Why you've outgrown Flatris?",
-            "whySwitchSubtitle": "Standard solutions are fine for small businesses. But if your goal is scaling and international expansion, you need an ecosystem.",
-            "painPoints": [
-                {
-                    "title": "Data Fragmentation",
-                    "description": "In Flatris, inventory exists separate from marketing. In GRIDIX, it's a single living organism with SSOT architecture."
-                },
-                {
-                    "title": "Lost Profit",
-                    "description": "Without dynamic pricing and AI analytics, you lose 5-7% margin on every unit sold."
-                },
-                {
-                    "title": "Integration Complexity",
-                    "description": "GRIDIX is designed as an API-first platform. We integrate into your IT landscape in days, not months."
-                }
-            ],
-            "comparisonTable": [
-                {
-                    "categoryName": "Core Features V1",
-                    "features": [
-                        {
-                            "featureName": "Interactive Inventory",
-                            "competitorValue": "Yes",
-                            "gridixV1Value": "Yes",
-                            "gridixV2Value": "Yes"
-                        },
-                        {
-                            "featureName": "Single Source of Truth (SSOT)",
-                            "competitorValue": "No",
-                            "gridixV1Value": "Yes",
-                            "gridixV2Value": "Yes"
-                        }
-                    ]
-                },
-                {
-                    "categoryName": "GRIDIX V2: The Future (Roadmap)",
-                    "features": [
-                        {
-                            "featureName": "AI Yield Management (+15-30% revenue)",
-                            "competitorValue": "No",
-                            "gridixV1Value": "No",
-                            "gridixV2Value": "Yes",
-                            "isHighlighted": true
-                        },
-                        {
-                            "featureName": "Global Agency Network",
-                            "competitorValue": "No",
-                            "gridixV1Value": "No",
-                            "gridixV2Value": "Yes",
-                            "isHighlighted": true
-                        }
-                    ]
-                }
-            ]
+    ],
+    "spotlights": [
+        {
+            "title": "Интеллектуальный подбор",
+            "description": "Алгоритм, который учится на поведении пользователя. Предлагает не просто метры, а стиль жизни.",
+            "statValue": "+40%",
+            "statLabel": "Конверсия в сделку",
+            "image": ""
+        },
+        {
+            "title": "Бесшовная 3D-прогулка",
+            "description": "Погружение клиента в будущую квартиру прямо в браузере. Без очков VR и тяжелых плагинов.",
+            "statValue": "2x",
+            "statLabel": "Время на сайте",
+            "image": ""
+        },
+        {
+            "title": "Экосистема SuperApp",
+            "description": "Одно приложение для покупки, приемки, ремонта и жизни. Управляйте домом с телефона.",
+            "statValue": "95%",
+            "statLabel": "Лояльность жителей",
+            "image": ""
         }
+    ],
+    "roadmap": {
+        "v1Features": [
+            "Базовый каталог",
+            "Интеграция с CRM",
+            "2D планировки",
+            "Админка менеджера"
+        ],
+        "v2Features": [
+            "AI-рекомендации",
+            "3D-генплан",
+            "Динамическое ценообразование",
+            "SuperApp для жителей"
+        ]
     }
-]
+}
