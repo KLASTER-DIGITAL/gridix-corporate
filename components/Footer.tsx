@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 
 export const Footer = () => {
     return (
@@ -25,7 +25,7 @@ export const Footer = () => {
                         <h4 className="font-semibold text-slate-900">Ресурсы</h4>
                         <ul className="space-y-2 text-sm text-slate-600">
                             <li><Link href="/cases" className="hover:text-blue-600">Кейсы</Link></li>
-                            <li><Link href="/cases" className="hover:text-blue-600">Блог</Link></li>
+                            <li><Link href="/blog" className="hover:text-blue-600">Блог</Link></li>
                             <li><Link href="/help" className="hover:text-blue-600">Центр помощи</Link></li>
                         </ul>
                     </div>
