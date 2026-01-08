@@ -29,7 +29,7 @@ export function ComparisonTable({ data }: ComparisonTableProps) {
                     </p>
                 </div>
 
-                <div className="relative overflow-x-auto rounded-3xl border border-white/10 bg-slate-900/50 backdrop-blur-sm shadow-2xl max-h-[80vh] scrollbar-thin scrollbar-thumb-blue-600/20 scrollbar-track-transparent">
+                <div className="relative rounded-3xl border border-white/10 bg-slate-900/50 backdrop-blur-sm shadow-2xl">
                     <table className="w-full border-collapse text-left relative">
                         <thead className="sticky top-0 z-20 backdrop-blur-xl bg-slate-950/90 shadow-lg after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-white/10">
                             <tr>

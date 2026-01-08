@@ -1,199 +1,200 @@
 {
-    "title": "GRIDIX vs Flatris: Битва Экосистем",
-    "subtitle": "Почему лидеры рынка выбирают GRIDIX для масштабирования продаж",
+    "title": "GRIDIX vs Flatris: Технологическая Пропасть",
+    "subtitle": "Почему 30+ девелоперов в 2024 году мигрировали с Flatris/Profitbase на GRIDIX",
     "heroImage": "https://cdn.builder.io/api/v1/image/assets%2F483c7b9d733242189524cac06e748d77%2Fhero-comparison.png",
     "competitorName": "Flatris / Profitbase",
     "whySwitch": [
         {
-            "title": "Устаревший UX",
-            "description": "Клиенты уходят с сайта, потому что не могут найти нужную квартиру в 3 клика."
+            "title": "Медленные внедрения",
+            "description": "Запуск проекта занимает недели из-за ручной отрисовки SVG и настройки фидов."
         },
         {
-            "title": "Слабая SEO-структура",
-            "description": "Потеря органического трафика из-за отсутствия динамических посадочных страниц."
+            "title": "Устаревший стек",
+            "description": "Медленная загрузка (2-3 сек), отсутствие PWA и слабая SEO-индексация каталога."
         },
         {
-            "title": "Нет мобильного приложения",
-            "description": "Потеря контакта с клиентом после сделки и отсутствие допродаж."
+            "title": "Проблемы с синхронизацией",
+            "description": "Задержки в обновлении статусов из CRM приводят к двойным бронированиям и негативу."
         },
         {
-            "title": "Медленные фиды",
-            "description": "Актуализация цен на классифайдах занимает часы, а не минуты."
+            "title": "Отсутствие 'Вау-эффекта'",
+            "description": "Статичные 2D-планировки не продают эмоцию и не вовлекают клиента в выбор."
         }
     ],
     "comparisonTable": [
         {
-            "categoryName": "Core Platform (Платформа)",
+            "categoryName": "Core Tech (Технологии)",
             "features": [
                 {
-                    "featureName": "Технология",
-                    "competitorValue": "Monolith / Old Stack",
-                    "gridixV1Value": "Next.js 14 (SSG/SSR)",
-                    "gridixV2Value": "Next.js 15 + Turbo",
+                    "featureName": "Технологический стек",
+                    "competitorValue": "Legacy Monolith (PHP/Old Stack)",
+                    "gridixV1Value": "Next.js 14 + Supabase (Modern)",
+                    "gridixV2Value": "Next.js 15 + Edge Functions",
                     "isHighlighted": true
                 },
                 {
-                    "featureName": "Скорость загрузки (LCP)",
+                    "featureName": "Скорость загрузки (FCP)",
                     "competitorValue": "1.5s - 3.0s",
-                    "gridixV1Value": "0.8s",
-                    "gridixV2Value": "< 0.5s (Instant)",
+                    "gridixV1Value": "0.8s (Static Gen)",
+                    "gridixV2Value": "< 0.4s (Turbo Edge)",
                     "isHighlighted": true
                 },
                 {
-                    "featureName": "Мобильная адаптивность",
-                    "competitorValue": "Basic Responsive",
-                    "gridixV1Value": "Mobile-First",
-                    "gridixV2Value": "PWA 2.0 + Native Feel"
-                },
-                {
-                    "featureName": "SEO-архитектура",
-                    "competitorValue": "Static URLs",
-                    "gridixV1Value": "Dynamic Slugs",
-                    "gridixV2Value": "ISR + Auto-Metadata",
+                    "featureName": "Время запуска проекта",
+                    "competitorValue": "2-4 недели",
+                    "gridixV1Value": "30 минут (Self-Service)",
+                    "gridixV2Value": "Мгновенно (AI-Import)",
                     "isHighlighted": true
                 },
                 {
-                    "featureName": "Отказоустойчивость",
-                    "competitorValue": "99.0%",
-                    "gridixV1Value": "99.9%",
-                    "gridixV2Value": "99.99% (Edge Edge)"
+                    "featureName": "Мобильная версия",
+                    "competitorValue": "Adaptive (Сжатая версия)",
+                    "gridixV1Value": "Mobile-First (Touch Native)",
+                    "gridixV2Value": "PWA 2.0 (App-like)"
+                },
+                {
+                    "featureName": "SLA & Uptime",
+                    "competitorValue": "99.0% (Частые сбои)",
+                    "gridixV1Value": "99.9% (Global CDN)",
+                    "gridixV2Value": "99.99% (Multi-Region)"
                 }
             ]
         },
         {
-            "categoryName": "Sales Engine (Продажи)",
+            "categoryName": "Killer Features (Киллер-фичи)",
             "features": [
                 {
-                    "featureName": "Интерактивный Генплан",
-                    "competitorValue": "2D SVG (Static)",
-                    "gridixV1Value": "WebGL 2.5D",
-                    "gridixV2Value": "3D WebGL + Raytracing",
+                    "featureName": "Редактор фасадов (No-Code)",
+                    "competitorValue": "Ручная отрисовка SVG",
+                    "gridixV1Value": "Визуальный редактор полигонов",
+                    "gridixV2Value": "AI-Auto Polygon Tracing",
                     "isHighlighted": true
                 },
                 {
-                    "featureName": "Шахматка квартир",
-                    "competitorValue": "Табличная",
-                    "gridixV1Value": "Визуальная",
-                    "gridixV2Value": "AI-Smart Grouping"
-                },
-                {
-                    "featureName": "Динамическое ценообразование",
-                    "competitorValue": false,
-                    "gridixV1Value": true,
-                    "gridixV2Value": "AI-Predictive Models",
+                    "featureName": "Экосистема (SuperApp)",
+                    "competitorValue": "Только каталог продаж",
+                    "gridixV1Value": "Каталог + Кабинет жителя",
+                    "gridixV2Value": "Marketplace + Community",
                     "isHighlighted": true
                 },
                 {
-                    "featureName": "Бронирование онлайн",
-                    "competitorValue": "Заявка на почту",
-                    "gridixV1Value": "Эквайринг",
-                    "gridixV2Value": "SberPay / SBPE + Escrow"
+                    "featureName": "Heatmap спроса",
+                    "competitorValue": "Нет",
+                    "gridixV1Value": "По квартирам и планировкам",
+                    "gridixV2Value": "Predictive AI Analytics",
+                    "isHighlighted": true
                 },
                 {
-                    "featureName": "Генерация презентаций (PDF)",
-                    "competitorValue": "Стандартный шаблон",
-                    "gridixV1Value": "Брендированный PDF",
-                    "gridixV2Value": "Динамический Лендинг лота"
+                    "featureName": "Smart PDF Генерация",
+                    "competitorValue": "Статичный шаблон",
+                    "gridixV1Value": "Динамический, QR-коды, UTM",
+                    "gridixV2Value": "Персональная видео-презентация"
                 }
             ]
         },
         {
-            "categoryName": "Marketing Ecosystem (Маркетинг)",
+            "categoryName": "Sales Features (Инструменты продаж)",
             "features": [
                 {
-                    "featureName": "Авто-выгрузка (Фиды)",
-                    "competitorValue": "Раз в сутки",
-                    "gridixV1Value": "Раз в час",
-                    "gridixV2Value": "Real-time (Webhooks)",
-                    "isHighlighted": true
-                },
-                {
-                    "featureName": "Сквозная аналитика",
-                    "competitorValue": "Нет / Базовая",
-                    "gridixV1Value": "Roistat / Calltouch",
-                    "gridixV2Value": "Native AI Analytics"
-                },
-                {
-                    "featureName": "3D Туры и Панорамы",
-                    "competitorValue": false,
-                    "gridixV1Value": "Iframe Integration",
-                    "gridixV2Value": "Native Seamless Embed"
-                },
-                {
-                    "featureName": "Морфинг планировок",
-                    "competitorValue": false,
-                    "gridixV1Value": true,
-                    "gridixV2Value": "Auto-Furniture Placement"
-                }
-            ]
-        },
-        {
-            "categoryName": "Customer Experience (Клиент)",
-            "features": [
-                {
-                    "featureName": "Личный кабинет покупателя",
-                    "competitorValue": "Базовый",
-                    "gridixV1Value": "Документы + Статус",
-                    "gridixV2Value": "SuperApp (Services + Community)",
-                    "isHighlighted": true
-                },
-                {
-                    "featureName": "Мобильное приложение (iOS/Android)",
-                    "competitorValue": false,
-                    "gridixV1Value": "WebView",
-                    "gridixV2Value": "Native React Native",
-                    "isHighlighted": true
+                    "featureName": "Визуализация фасадов",
+                    "competitorValue": "Статичный SVG",
+                    "gridixV1Value": "Интерактивный редактор",
+                    "gridixV2Value": "3D WebGL + Raytracing"
                 },
                 {
                     "featureName": "Ипотечный калькулятор",
-                    "competitorValue": "Простой",
-                    "gridixV1Value": "С актуальными ставками",
+                    "competitorValue": "Общий виджет",
+                    "gridixV1Value": "Привязан к цене лота",
                     "gridixV2Value": "AI-Scoring + Bank Integration"
                 },
                 {
-                    "featureName": "Программа лояльности",
-                    "competitorValue": false,
-                    "gridixV1Value": false,
-                    "gridixV2Value": "Blockchain Points & Rewards"
+                    "featureName": "Мультиязычность",
+                    "competitorValue": "Google Translate",
+                    "gridixV1Value": "Native (RU/EN/KA/AR)",
+                    "gridixV2Value": "AI-Neural Translate",
+                    "isHighlighted": true
+                },
+                {
+                    "featureName": "Валюты и конвертация",
+                    "competitorValue": "Одна валюта",
+                    "gridixV1Value": "Мультивалютность live",
+                    "gridixV2Value": "Crypto Payments"
+                }
+            ]
+        },
+        {
+            "categoryName": "CRM & Management (Управление)",
+            "features": [
+                {
+                    "featureName": "CRM Синхронизация",
+                    "competitorValue": "Односторонняя (задержки)",
+                    "gridixV1Value": "Bi-directional (Real-time)",
+                    "gridixV2Value": "Event-Driven Mesh",
+                    "isHighlighted": true
+                },
+                {
+                    "featureName": "Импорт данных",
+                    "competitorValue": "Ручной XML/Feed",
+                    "gridixV1Value": "Excel / Sheets (1000 строк/сек)",
+                    "gridixV2Value": "Прямое подключение к ERP"
+                },
+                {
+                    "featureName": "Управление ценами",
+                    "competitorValue": "Построчно вручную",
+                    "gridixV1Value": "Массовое (%, сумма, этажи)",
+                    "gridixV2Value": "AI-Dynamic Pricing"
+                },
+                {
+                    "featureName": "Роли и доступы",
+                    "competitorValue": "Ограниченные",
+                    "gridixV1Value": "Owner, Manager, Viewer",
+                    "gridixV2Value": "RBAC + SSO (Enterprise)"
                 }
             ]
         }
     ],
     "spotlights": [
         {
-            "title": "Интеллектуальный подбор",
-            "description": "Алгоритм, который учится на поведении пользователя. Предлагает не просто метры, а стиль жизни.",
-            "statValue": "+40%",
-            "statLabel": "Конверсия в сделку",
-            "image": ""
+            "title": "Запуск за 30 минут",
+            "description": "Пока конкуренты рисуют SVG вручную, вы уже продаете. Импорт из Excel + авто-генерация шахматки.",
+            "statValue": "30 мин",
+            "statLabel": "Time-to-Market",
+            "image": "https://cdn.builder.io/api/v1/image/assets%2F483c7b9d733242189524cac06e748d77%2Ffeature-import.png"
         },
         {
-            "title": "Бесшовная 3D-прогулка",
-            "description": "Погружение клиента в будущую квартиру прямо в браузере. Без очков VR и тяжелых плагинов.",
-            "statValue": "2x",
-            "statLabel": "Время на сайте",
-            "image": ""
+            "title": "SuperApp Экосистема",
+            "description": "Мы не просто 'каталог'. Gridix закрывает путь клиента от первого клика до приемки ключей и заказа пиццы.",
+            "statValue": "LTV",
+            "statLabel": "Рост жизненного цикла",
+            "image": "https://cdn.builder.io/api/v1/image/assets%2F483c7b9d733242189524cac06e748d77%2Ffeature-ecosystem.png"
         },
         {
-            "title": "Экосистема SuperApp",
-            "description": "Одно приложение для покупки, приемки, ремонта и жизни. Управляйте домом с телефона.",
-            "statValue": "95%",
-            "statLabel": "Лояльность жителей",
-            "image": ""
+            "title": "Native Мультиязычность",
+            "description": "Продавайте инвесторам в Дубае или Батуми на их языке (AR/EN/RU). Валюты пересчитываются на лету.",
+            "statValue": "+24%",
+            "statLabel": "Заявок от экспатов",
+            "image": "https://cdn.builder.io/api/v1/image/assets%2F483c7b9d733242189524cac06e748d77%2Ffeature-langs.png"
+        },
+        {
+            "title": "Двусторонняя Sync",
+            "description": "Менеджер ставит бронь в AmoCRM — квартира исчезает с сайта за 0.5 сек. Никаких конфликтов.",
+            "statValue": "0%",
+            "statLabel": "Ошибок в статусах",
+            "image": "https://cdn.builder.io/api/v1/image/assets%2F483c7b9d733242189524cac06e748d77%2Ffeature-sync.png"
         }
     ],
     "roadmap": {
         "v1Features": [
-            "Базовый каталог",
-            "Интеграция с CRM",
-            "2D планировки",
-            "Админка менеджера"
+            "Интерактивная шахматка",
+            "CRM-интеграция (2-way)",
+            "Excel-импорт",
+            "PDF-генерация"
         ],
         "v2Features": [
-            "AI-рекомендации",
-            "3D-генплан",
-            "Динамическое ценообразование",
-            "SuperApp для жителей"
+            "3D-генплан (WebGL)",
+            "AI-ценообразование",
+            "Мобильное приложение (React Native)",
+            "Маркетплейс услуг"
         ]
     }
 }

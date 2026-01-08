@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BrainCircuit, Globe2, Rocket, BarChart3, Users2 } from "lucide-react";
+import { BrainCircuit, Globe2, Rocket, BarChart3, Users2, Zap, Layers } from "lucide-react";
 
 import { ComparisonData } from "@/lib/types/comparison";
 
@@ -9,11 +9,23 @@ interface FeatureSpotlightProps {
     data: ComparisonData;
 }
 
-const icons: Record<string, any> = {
-    "AI": <BrainCircuit className="w-10 h-10 text-blue-500" />,
-    "Globe": <Globe2 className="w-10 h-10 text-indigo-500" />,
-    "Rocket": <Rocket className="w-10 h-10 text-cyan-500" />
-};
+const icons = [
+    <BrainCircuit key="ai" className="w-10 h-10 text-blue-500" />,
+    <Globe2 key="globe" className="w-10 h-10 text-indigo-500" />,
+    <Rocket key="rocket" className="w-10 h-10 text-cyan-500" />,
+    <Layers key="layers" className="w-10 h-10 text-purple-500" />,
+    <Zap key="zap" className="w-10 h-10 text-amber-500" />,
+    <BarChart3 key="chart" className="w-10 h-10 text-emerald-500" />
+];
+
+const gradients = [
+    "from-blue-500/10 to-indigo-500/10",
+    "from-indigo-500/10 to-purple-500/10",
+    "from-cyan-500/10 to-blue-500/10",
+    "from-purple-500/10 to-pink-500/10",
+    "from-amber-500/10 to-orange-500/10",
+    "from-emerald-500/10 to-teal-500/10"
+];
 
 export const FeatureSpotlight = ({ data }: FeatureSpotlightProps) => {
     return (
@@ -21,8 +33,8 @@ export const FeatureSpotlight = ({ data }: FeatureSpotlightProps) => {
             <div className="container px-4 md:px-6 mx-auto">
                 <div className="space-y-24">
                     {data.spotlights?.map((spot, idx) => {
-                        const icon = idx === 0 ? icons["AI"] : idx === 1 ? icons["Globe"] : icons["Rocket"];
-                        const gradient = idx === 0 ? "from-blue-500/10 to-indigo-500/10" : idx === 1 ? "from-indigo-500/10 to-purple-500/10" : "from-cyan-500/10 to-blue-500/10";
+                        const icon = icons[idx % icons.length];
+                        const gradient = gradients[idx % gradients.length];
 
                         return (
                             <motion.div
