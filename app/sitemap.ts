@@ -50,12 +50,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         console.error('Sitemap: Failed to fetch blog posts:', error);
     }
 
+    // Fetch comparisons
+    let comparisons: BuilderSitemapItem[] = [];
+    try {
+        comparisons = (await builder.getAll('comparison', {
+            options: { noTargeting: true },
+            fields: 'data.slug,lastUpdated',
+            limit: 100,
+        })) as unknown as BuilderSitemapItem[];
+    } catch (error) {
+        console.error('Sitemap: Failed to fetch comparisons:', error);
+    }
+
     const sitemapEntries: MetadataRoute.Sitemap = [];
 
     for (const locale of locales) {
-        // Base paths for each locale
-        const localePrefix = locale === 'ru' ? '' : `/${locale}`; // Or always /locale if you prefer
-
         // Builder Pages
         builderPages.filter(page => !page.data?.noindex).forEach(page => {
             const urlPath = page.data?.url === '/' ? '' : page.data?.url;
@@ -84,6 +93,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 lastModified: new Date(item.lastUpdated || Date.now()),
                 changeFrequency: 'monthly',
                 priority: 0.7,
+            });
+        });
+
+        // Comparisons
+        comparisons.forEach(item => {
+            sitemapEntries.push({
+                url: `${siteUrl}/${locale}/compare/${item.data?.slug}`,
+                lastModified: new Date(item.lastUpdated || Date.now()),
+                changeFrequency: 'monthly',
+                priority: 0.6,
             });
         });
 
