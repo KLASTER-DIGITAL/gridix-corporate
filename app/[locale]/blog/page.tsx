@@ -1,12 +1,17 @@
 import { builder } from "@/lib/builder";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { Calendar, ChevronRight, Newspaper } from "lucide-react";
 import { BuilderBlogPost } from "@/lib/types/blog-post";
 
 export const revalidate = 60;
 
-export default async function BlogPage() {
+export default async function BlogPage({
+    params
+}: {
+    params: Promise<{ locale: string }>
+}) {
+    const { locale } = await params;
     if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
         return (
             <main className="min-h-screen bg-slate-950 pt-32 pb-24 flex items-center justify-center text-slate-400">
@@ -20,6 +25,7 @@ export default async function BlogPage() {
     try {
         posts = (await builder.getAll("blog-post", {
             options: { noTargeting: true },
+            userAttributes: { locale },
             sort: {
                 createdDate: -1,
             },
@@ -74,7 +80,16 @@ export default async function BlogPage() {
                                         <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-slate-950 to-transparent">
                                             <div className="flex items-center gap-2 text-slate-400 font-black text-[10px] uppercase tracking-[0.2em]">
                                                 <Calendar className="w-3 h-3" />
-                                                {item.data.date ? new Date(item.data.date).toLocaleDateString("ru-RU") : "NEW"}
+                                                {(() => {
+                                                    if (!item.data.date) return "NEW";
+                                                    try {
+                                                        const d = new Date(item.data.date);
+                                                        if (isNaN(d.getTime())) return "NEW";
+                                                        return d.toLocaleDateString("ru-RU");
+                                                    } catch {
+                                                        return "NEW";
+                                                    }
+                                                })()}
                                             </div>
                                         </div>
                                     </div>

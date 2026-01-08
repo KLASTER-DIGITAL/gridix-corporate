@@ -1,9 +1,10 @@
 "use client";
 
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { MegaMenu } from './layout/MegaMenu';
 import { Button } from './ui/button';
-import { Menu, Globe } from 'lucide-react';
+import { Menu } from 'lucide-react';
+import { LocaleSwitcher } from './LocaleSwitcher';
 import {
     Sheet,
     SheetContent,
@@ -46,27 +47,7 @@ export const Header = () => {
                         </Link>
 
                         {/* Language Switcher */}
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" size="icon" className="text-slate-300 hover:text-white hover:bg-white/5">
-                                    <Globe className="w-5 h-5" />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-40 bg-slate-900 border-white/10 text-slate-300">
-                                <DropdownMenuItem className="hover:bg-white/10 hover:text-white cursor-pointer gap-2">
-                                    <span>🌐</span> Global (EN)
-                                </DropdownMenuItem>
-                                <DropdownMenuItem className="hover:bg-white/10 hover:text-white cursor-pointer gap-2">
-                                    <span>🇷🇺</span> Russian
-                                </DropdownMenuItem>
-                                <DropdownMenuItem className="hover:bg-white/10 hover:text-white cursor-pointer gap-2">
-                                    <span>🇬🇪</span> Georgian
-                                </DropdownMenuItem>
-                                <DropdownMenuItem className="hover:bg-white/10 hover:text-white cursor-pointer gap-2">
-                                    <span>🇹🇷</span> Turkish
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                        <LocaleSwitcher />
 
                         <div className="w-px h-6 bg-white/10" />
 

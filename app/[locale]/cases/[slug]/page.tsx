@@ -2,7 +2,7 @@ import { builder } from "@/lib/builder";
 import { notFound } from "next/navigation";
 import { RenderBuilderContent } from "@/components/builder-renderer";
 import { ArrowLeft, CheckCircle2, LayoutGrid, Info, Tag, Quote, HelpCircle, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { BuilderCaseStudy } from "@/lib/types/case-study";
@@ -12,12 +12,13 @@ import { Metadata } from "next";
 export const revalidate = 60;
 
 interface CaseStudyPageProps {
-    params: Promise<{ slug: string }>;
+    params: Promise<{ slug: string; locale: string }>;
 }
 
-async function getCaseContent(slug: string) {
+async function getCaseContent(slug: string, locale: string) {
     try {
         const content = (await builder.get("case-study", {
+            userAttributes: { locale },
             query: {
                 "data.slug": slug,
             },
@@ -30,8 +31,8 @@ async function getCaseContent(slug: string) {
 }
 
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
-    const { slug } = await params;
-    const content = await getCaseContent(slug);
+    const { slug, locale } = await params;
+    const content = await getCaseContent(slug, locale);
 
     if (!content) return {};
 
@@ -46,15 +47,20 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
 }
 
 export async function generateStaticParams() {
+    const locales = ['en', 'ru'];
     try {
         const cases = (await builder.getAll("case-study", {
             options: { noTargeting: true },
             fields: "data.slug",
         })) as unknown as BuilderCaseStudy[];
 
-        return cases.map((item) => ({
-            slug: item.data.slug,
-        }));
+        const params = [];
+        for (const locale of locales) {
+            for (const item of cases) {
+                params.push({ locale, slug: item.data.slug });
+            }
+        }
+        return params;
     } catch (error) {
         console.error("Failed to generate static params for cases:", error);
         return [];
@@ -62,7 +68,7 @@ export async function generateStaticParams() {
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
 
     if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
         return (
@@ -72,7 +78,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         );
     }
 
-    const content = await getCaseContent(slug);
+    const content = await getCaseContent(slug, locale);
 
     if (!content) {
         notFound();

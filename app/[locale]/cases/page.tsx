@@ -2,13 +2,18 @@ import { builder } from "@/lib/builder";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, Globe, Building2, ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { BuilderCaseStudy } from "@/lib/types/case-study";
 
 export const revalidate = 60;
 
-export default async function CasesPage() {
+export default async function CasesPage({
+    params
+}: {
+    params: Promise<{ locale: string }>
+}) {
+    const { locale } = await params;
     if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
         return (
             <main className="min-h-screen bg-slate-950 pt-32 pb-24 flex items-center justify-center text-slate-400">
@@ -22,6 +27,7 @@ export default async function CasesPage() {
     try {
         cases = (await builder.getAll("case-study", {
             options: { noTargeting: true },
+            userAttributes: { locale },
             sort: {
                 createdDate: -1,
             },
@@ -111,7 +117,16 @@ export default async function CasesPage() {
                                         <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
                                             <div className="flex items-center gap-2 text-slate-500 font-bold text-[10px] uppercase tracking-widest">
                                                 <Calendar className="w-3 h-3" />
-                                                {item.data.date ? new Date(item.data.date).toLocaleDateString('ru-RU') : '2025 EDITION'}
+                                                {(() => {
+                                                    if (!item.data.date) return "2025 EDITION";
+                                                    try {
+                                                        const d = new Date(item.data.date);
+                                                        if (isNaN(d.getTime())) return "2025 EDITION";
+                                                        return d.toLocaleDateString("ru-RU");
+                                                    } catch {
+                                                        return "2025 EDITION";
+                                                    }
+                                                })()}
                                             </div>
                                             <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300">
                                                 <ChevronRight className="w-5 h-5" />

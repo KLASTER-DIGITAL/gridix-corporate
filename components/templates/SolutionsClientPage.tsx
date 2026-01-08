@@ -2,9 +2,7 @@
 
 import React from "react"
 import { motion } from "framer-motion"
-import { ArrowRight, Heart, Home, Map, MousePointer2, Search, Smartphone, Eye } from "lucide-react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Heart, Home, MousePointer2, Smartphone, Eye } from "lucide-react"
 import { SectionFinalCTA } from "@/components/sections/SectionFinalCTA"
 
 export const SolutionsClientPage = () => {

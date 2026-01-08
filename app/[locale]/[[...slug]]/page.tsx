@@ -7,14 +7,16 @@ import type { Metadata } from 'next';
 export const revalidate = 60;
 
 interface PageProps {
-    params: Promise<{ slug?: string[] }>;
+    params: Promise<{ locale: string; slug?: string[] }>;
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export async function generateStaticParams() {
+    const locales = ['en', 'ru'];
+
     // If no API key is set, return empty params to avoid build error
     if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
-        return [];
+        return locales.map(locale => ({ locale, slug: [] }));
     }
 
     try {
@@ -24,33 +26,44 @@ export async function generateStaticParams() {
             limit: 100,
         });
 
-        return pages
-            .map((page) => {
+        const paths: { locale: string; slug: string[] }[] = [];
+        for (const locale of locales) {
+            for (const page of pages) {
                 const url = page.data?.url;
-                // Homepage is usually '/' or empty string
-                if (!url || url === '/') return { slug: [] };
+                if (!url || url === '/') {
+                    paths.push({ locale, slug: [] });
+                } else {
+                    paths.push({
+                        locale,
+                        slug: url.split('/').filter((x: string) => x && x !== ''),
+                    });
+                }
+            }
+        }
 
-                // Ensure strict slug array for catch-all
-                return {
-                    slug: url.split('/').filter((x: string) => x && x !== ''),
-                };
-            })
-            // Unique urls
-            .filter((v, i, a) => a.findIndex(t => t.slug.join('/') === v.slug.join('/')) === i);
+        // Ensure homepages are present
+        locales.forEach(locale => {
+            if (!paths.some(p => p.locale === locale && p.slug.length === 0)) {
+                paths.push({ locale, slug: [] });
+            }
+        });
+
+        return paths;
     } catch (error) {
         console.warn('Failed to fetch builder pages for static params:', error);
-        return [];
+        return locales.map(locale => ({ locale, slug: [] }));
     }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const resolvedParams = await params;
+    const locale = resolvedParams.locale;
     const urlPath = '/' + (resolvedParams?.slug?.join('/') || '');
 
     let content = null;
     try {
         content = await builder.get('page', {
-            userAttributes: { urlPath },
+            userAttributes: { urlPath, locale },
         }).promise();
     } catch (error) {
         console.error('Failed to fetch builder content for metadata:', error);
@@ -91,13 +104,14 @@ import { PartnerProgramPage } from '@/components/templates/PartnerProgramPage';
 
 export default async function Page({ params, searchParams }: PageProps) {
     const resolvedParams = await params;
+    const locale = resolvedParams.locale;
     const resolvedSearchParams = await searchParams;
     const urlPath = '/' + (resolvedParams?.slug?.join('/') || '');
 
     let content = null;
     try {
         content = await builder.get('page', {
-            userAttributes: { urlPath },
+            userAttributes: { urlPath, locale },
         }).promise();
     } catch (error) {
         console.error('Failed to fetch builder content:', error);

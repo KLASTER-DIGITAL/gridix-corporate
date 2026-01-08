@@ -1,6 +1,6 @@
 import { builder } from "@/lib/builder";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -10,13 +10,16 @@ import { BuilderBlogPost } from "@/lib/types/blog-post";
 export const revalidate = 60;
 
 interface BlogPostPageProps {
-    params: Promise<{ slug: string }>;
+    params: Promise<{ slug: string; locale: string }>;
 }
 
-async function getPostContent(slug: string) {
+async function getPostContent(slug: string, locale: string) {
     try {
         const content = (await builder
             .get("blog-post", {
+                userAttributes: {
+                    locale
+                },
                 query: {
                     "data.slug": slug,
                 },
@@ -30,8 +33,8 @@ async function getPostContent(slug: string) {
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-    const { slug } = await params;
-    const content = await getPostContent(slug);
+    const { slug, locale } = await params;
+    const content = await getPostContent(slug, locale);
 
     if (!content) return {};
 
@@ -46,15 +49,20 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export async function generateStaticParams() {
+    const locales = ['en', 'ru'];
     try {
         const posts = (await builder.getAll("blog-post", {
             options: { noTargeting: true },
             fields: "data.slug",
         })) as unknown as BuilderBlogPost[];
 
-        return posts.map((item) => ({
-            slug: item.data.slug,
-        }));
+        const params = [];
+        for (const locale of locales) {
+            for (const item of posts) {
+                params.push({ locale, slug: item.data.slug });
+            }
+        }
+        return params;
     } catch (error) {
         console.error("Failed to generate static params for blog:", error);
         return [];
@@ -62,7 +70,7 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const { slug } = await params;
+    const { slug, locale } = await params;
 
     if (!process.env.NEXT_PUBLIC_BUILDER_API_KEY) {
         return (
@@ -72,7 +80,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         );
     }
 
-    const content = await getPostContent(slug);
+    const content = await getPostContent(slug, locale);
 
     if (!content) {
         notFound();
@@ -104,7 +112,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     <div className="max-w-3xl">
                         <div className="flex items-center gap-2 text-slate-400 font-black text-[10px] uppercase tracking-[0.2em] mb-6">
                             <Calendar className="w-3 h-3" />
-                            {data.date ? new Date(data.date).toLocaleDateString("ru-RU") : "NEW"}
+                            {(() => {
+                                if (!data.date) return "NEW";
+                                try {
+                                    const d = new Date(data.date);
+                                    if (isNaN(d.getTime())) return "NEW";
+                                    return d.toLocaleDateString("ru-RU");
+                                } catch {
+                                    return "NEW";
+                                }
+                            })()}
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-[1.1] tracking-tight">
                             {data.title}

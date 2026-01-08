@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, ArrowRight, BarChart, Database, Zap, Lock, Globe } from "lucide-react";
+import { Check, ArrowRight, BarChart, Database, Zap, Lock } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { SectionFinalCTA } from "../sections/SectionFinalCTA";
