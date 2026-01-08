@@ -70,6 +70,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     if (!content) {
+        if (urlPath === '/') {
+            return {}; // Inherit from layout
+        }
         return {
             title: 'Not Found',
         };
